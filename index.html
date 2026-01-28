@@ -15,8 +15,8 @@
         }
 
         .glass {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.5);
         }
 
@@ -25,14 +25,14 @@
             border-bottom: 3px solid transparent;
             font-weight: 700;
             color: #64748b;
-            padding: 0.75rem 1.5rem;
+            padding: 0.85rem 1.5rem;
             white-space: nowrap;
         }
 
         .tab-btn.active {
             border-bottom-color: #0ea5e9;
             color: #0ea5e9;
-            transform: translateY(-2px);
+            transform: translateY(-1px);
         }
 
         .animal-card {
@@ -40,7 +40,7 @@
         }
         .animal-card:hover {
             transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 25px 30px -5px rgba(0, 50, 100, 0.1);
+            box-shadow: 0 25px 30px -5px rgba(0, 50, 100, 0.15);
         }
 
         .logo-animate {
@@ -54,9 +54,9 @@
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
         @keyframes kenBurns {
-            0% { transform: scale(1) translate(0, 0); }
-            50% { transform: scale(1.1) translate(-1%, -1%); }
-            100% { transform: scale(1) translate(0, 0); }
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
         .alive-photo {
             animation: kenBurns 12s ease-in-out infinite;
@@ -64,8 +64,8 @@
 
         @keyframes waterFloat {
             0%, 100% { transform: translateY(0) rotate(0); }
-            25% { transform: translateY(-5px) rotate(1deg); }
-            75% { transform: translateY(5px) rotate(-1deg); }
+            25% { transform: translateY(-6px) rotate(1deg); }
+            75% { transform: translateY(6px) rotate(-1deg); }
         }
         .diet-icon-animate {
             display: inline-block;
@@ -95,6 +95,7 @@
         <!-- HEADER -->
         <header class="p-5 sm:p-8 border-b border-sky-100 bg-white/50 sticky top-0 z-50 backdrop-blur-md">
             <div class="flex justify-between items-center w-full relative">
+                <!-- Logo Section -->
                 <div onclick="showLanding(); playClickSound(880);" class="flex items-center gap-4 cursor-pointer group z-20 btn-click-effect">
                     <img src="https://s5.iimage.su/s/27/gDm4xRcxrSZzl2EjNuNzFugYqon9wErgDmzP5klt.png" alt="ArctiGram Logo" class="w-14 h-14 sm:w-16 sm:h-16 rounded-xl object-contain logo-animate shadow-sm">
                     <div>
@@ -103,6 +104,7 @@
                     </div>
                 </div>
 
+                <!-- Desktop Navigation (Strictly Centered) -->
                 <div class="absolute inset-0 hidden md:flex items-center justify-center pointer-events-none">
                     <nav class="flex bg-sky-50 p-1.5 rounded-2xl pointer-events-auto shadow-sm">
                         <button id="nav-landing-dt" onclick="showLanding(); playClickSound(660);" class="px-8 py-2.5 rounded-xl font-black text-sm uppercase transition-all btn-click-effect">Home</button>
@@ -110,17 +112,20 @@
                     </nav>
                 </div>
 
+                <!-- Right Side Controls -->
                 <div class="flex items-center z-20">
                     <div class="relative hidden md:block w-48 lg:w-64">
                         <input id="search-box-desktop" type="text" oninput="handleSearch(this.value)" placeholder="Search (En/Ru)..." class="w-full bg-sky-50 py-3.5 pl-12 pr-4 rounded-2xl search-input border border-sky-100 text-sm font-semibold">
                         <svg class="absolute left-4 top-3.5 text-sky-400" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
                     </div>
+                    <!-- Mobile Search Trigger (Top Right) -->
                     <button onclick="toggleMobileSearch(); playClickSound(500);" class="md:hidden p-3 bg-sky-50 rounded-2xl text-sky-500 shadow-sm border border-sky-100 active:scale-95 transition-transform">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
                     </button>
                 </div>
             </div>
 
+            <!-- Mobile Centered Nav -->
             <div class="flex justify-center items-center w-full mt-6 md:hidden">
                 <nav class="flex bg-sky-50 p-1.5 rounded-2xl shadow-sm w-fit">
                     <button id="nav-landing-mob" onclick="showLanding(); playClickSound(660);" class="px-6 py-2 rounded-xl font-black text-xs uppercase transition-all btn-click-effect">Home</button>
@@ -138,7 +143,7 @@
 
         <!-- MAIN VIEW -->
         <div id="main-view" class="flex-grow overflow-y-auto no-scrollbar pb-10 px-4 sm:px-8">
-            <!-- Content -->
+            <!-- Dynamic Content -->
         </div>
 
     </div>
@@ -166,298 +171,277 @@
                 species: 'Balaena mysticetus', habitat: 'Barents, Kara, Laptev, East Siberian, Chukchi Seas',
                 stats: { size: '19 m', weight: '112 t', age: 'Up to 268 years' },
                 diet: [
-                    { nameEn: 'Krill', nameRu: 'Криль', icon: '🦐', descEn: 'Small shrimp.', descRu: 'Мелкие рачки.' },
-                    { nameEn: 'Copepods', nameRu: 'Копеподы', icon: '💧', descEn: 'Tiny crustaceans.', descRu: 'Микро-рачки.' },
-                    { nameEn: 'Mysids', nameRu: 'Мизиды', icon: '🫧', descEn: 'Floating ocean life.', descRu: 'Планктонные существа.' }
+                    { nameEn: 'Krill Swarms', nameRu: 'Стаи криля', icon: '🦐', descEn: 'Primary energy source.', descRu: 'Главный источник энергии.' },
+                    { nameEn: 'Zooplankton', nameRu: 'Зоопланктон', icon: '💧', descEn: 'Copepods and small life.', descRu: 'Копеподы и мелкие организмы.' }
                 ],
                 funFactEn: 'I can live up to 268 years! My fountain blow can reach 7 meters high.',
                 funFactRu: 'Я живу до 268 лет! Мой фонтан может достигать 7 метров в высоту.',
-                introEn: "Ancient giant of the Arctic. I break ice with my massive head!",
-                introRu: "Древний великан Арктики. Я пробиваю толстый лед своей массивной головой!",
-                threats: "Global warming melting sea ice.", likes: 0
+                introEn: "I am the ancient giant of the Arctic. I break through thick ice with my head!",
+                introRu: "Я древний великан Арктики. Я пробиваю толстый лед своей головой!",
+                threats: "Global warming melting sea ice. Use less plastic and recycle!", likes: 0
             },
             {
                 id: 'beluga-whale', nameEn: 'Beluga Whale', nameRu: 'Белуха', username: '@white_canary',
-                avatar: 'https://images.takeshape.io/86ce9525-f5f2-4e97-81ba-54e8ce933da7/dev/f4bb6e0a-bcfa-46fc-a13a-8a929359da70/The%20beluga%20whale%20swim%20and%20facing%20the%20camera%20in%20the%20pool.jpg',
-                motionImg: 'https://assets.nautil.us/sites/3/nautilus/TIUxxNl8-Reese_HERO.png?q=65&auto=format&w=1600',
+                avatar: 'https://i.pinimg.com/originals/1b/83/70/1b8370af400e1983d2c02e2494d9accb.jpg',
+                motionImg: 'https://avatars.mds.yandex.net/i?id=1e965c34115b4f7a74e2807ea9128c64389fd152-5887158-images-thumbs&n=13',
                 species: 'Delphinapterus leucas', habitat: 'White, Barents, Kara, Laptev, Bering Seas',
                 stats: { size: '4.8 m', weight: '1200 kg', age: '40 years' },
                 diet: [
-                    { nameEn: 'Cod', nameRu: 'Треска', icon: '🐟', descEn: 'Main Arctic fish.', descRu: 'Основная рыба.' },
-                    { nameEn: 'Crustaceans', nameRu: 'Ракообразные', icon: '🦐', descEn: 'Crabs and shrimp.', descRu: 'Крабы и креветки.' },
-                    { nameEn: 'Mollusks', nameRu: 'Моллюски', icon: '🐚', descEn: 'Invertebrates.', descRu: 'Беспозвоночные.' }
+                    { nameEn: 'Cod', nameRu: 'Треска', icon: '🐟', descEn: 'High-protein diet.', descRu: 'Белковая диета.' },
+                    { nameEn: 'Crustaceans', nameRu: 'Ракообразные', icon: '🦐', descEn: 'Shrimps and crabs.', descRu: 'Креветки и крабы.' }
                 ],
-                funFactEn: 'I whistle, chirp, and roar like a real ocean choir!',
-                funFactRu: 'Я умею свистеть, щелкать и реветь, как настоящий морской хор!',
+                funFactEn: 'I am known as the "sea canary" because I can whistle, chirp, and roar!',
+                funFactRu: 'Меня зовут "морской канарейкой", так как я умею петь и свистеть!',
                 introEn: "Social white whale. I hide among Arctic ice floes.",
-                introRu: "Общительный белый кит. Прячусь среди арктических льдин.",
-                threats: "Water pollution and loud ship noise.", likes: 0
+                introRu: "Общительный белый кит. Прячусь среди льдин.",
+                threats: "Water pollution and loud noise.", likes: 0
             },
             {
                 id: 'narwhal', nameEn: 'Narwhal', nameRu: 'Нарвал', username: '@sea_unicorn',
-                avatar: 'https://images.unsplash.com/photo-1610484196191-4e4b51829fba?auto=format&fit=crop&q=80&w=400',
-                motionImg: 'https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&q=80&w=800',
-                species: 'Monodon monoceros', habitat: 'Kara, East Siberian, Chukchi Seas',
+                avatar: 'https://static1.thetravelimages.com/wordpress/wp-content/uploads/2024/11/dreamstime_xxl_333588014.jpg',
+                motionImg: 'https://img.ixbt.site/live/topics/preview/00/10/49/48/d5e1e501e6.png',
+                species: 'Monodon monoceros', habitat: 'Barents, Kara, Laptev, Chukchi Seas',
                 stats: { size: '4.2 m', weight: '1500 kg', age: '55 years' },
                 diet: [
-                    { nameEn: 'Halibut', nameRu: 'Палтус', icon: '🐟', descEn: 'Flatfish from deep.', descRu: 'Глубоководная рыба.' },
-                    { nameEn: 'Squids', nameRu: 'Кальмары', icon: '🦑', descEn: 'Deep-sea favorites.', descRu: 'Любимая еда глубин.' },
-                    { nameEn: 'Stingrays', nameRu: 'Скаты', icon: '🐡', descEn: 'Bottom dwellers.', descRu: 'Донные обитатели.' }
+                    { nameEn: 'Squids', nameRu: 'Кальмары', icon: '🦑', descEn: 'Deep-sea snacks.', descRu: 'Глубоководные закуски.' },
+                    { nameEn: 'Halibut', nameRu: 'Палтус', icon: '🐟', descEn: 'Bottom-dwelling fish.', descRu: 'Донная рыба.' }
                 ],
-                funFactEn: 'My "horn" is actually a tooth with thousands of nerves!',
-                funFactRu: 'Мой "рог" — это зуб с тысячами нервных окончаний!',
-                introEn: "Unicorn of the ocean. My tusk can grow to 3 meters!",
-                introRu: "Морской единорог. Мой бивень вырастает до 3 метров!",
-                threats: "Ship traffic noise.", likes: 0
+                funFactEn: 'My "horn" is actually a long tooth! I dive up to 1 km deep.',
+                funFactRu: 'Мой "рог" — это длинный зуб! Я ныряю на глубину до 1 км.',
+                introEn: "People call me the sea unicorn. I navigate in total darkness.",
+                introRu: "Меня зовут морским единорогом. Вижу звуком в темноте.",
+                threats: "Illegal hunting and warming.", likes: 0
             },
             {
-                id: 'grey-whale', nameEn: 'Grey Whale', nameRu: 'Серый кит', username: '@long_traveler',
-                avatar: 'https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&q=80&w=400',
-                motionImg: 'https://images.unsplash.com/photo-1516635857483-19533304011d?auto=format&fit=crop&q=80&w=800',
+                id: 'gray-whale', nameEn: 'Gray Whale', nameRu: 'Серый кит', username: '@long_traveler',
+                avatar: 'https://avatars.mds.yandex.net/i?id=55505bbaabc26b58e8526d70e8c96906_l-9264009-images-thumbs&n=13',
+                motionImg: 'https://avatars.mds.yandex.net/i?id=7a6d437496df861da6db0ef1c9e74c7f_l-5270397-images-thumbs&n=13',
                 species: 'Eschrichtius robustus', habitat: 'Chukchi, Bering, Okhotsk Seas',
-                stats: { size: '13.5 m', weight: '25 t', age: '42 years' },
+                stats: { size: '13.5 m', weight: '25 t', age: '45 years' },
                 diet: [
-                    { nameEn: 'Polychaetes', nameRu: 'Полихеты', icon: '🐛', descEn: 'Marine worms.', descRu: 'Морские черви.' },
-                    { nameEn: 'Amphipods', nameRu: 'Бокоплавы', icon: '🦐', descEn: 'Small crustaceans.', descRu: 'Мелкие рачки.' },
-                    { nameEn: 'Gastropods', nameRu: 'Брюхоногие', icon: '🐌', descEn: 'Sea snails.', descRu: 'Морские улитки.' }
+                    { nameEn: 'Benthic Feed', nameRu: 'Донный корм', icon: '🐛', descEn: 'Worms and crustaceans.', descRu: 'Черви и рачки.' }
                 ],
-                funFactEn: 'I swim almost 20,000 km every year. A world-class traveler!',
-                funFactRu: 'Я проплываю 20,000 км в год. Путешественник мирового класса!',
+                funFactEn: 'I swim up to 19,000 km every year. Champion explorer!',
+                funFactRu: 'Проплываю 20,000 км в год. Чемпион по путешествиям!',
                 introEn: "I filter my food from the sea floor mud.",
-                introRu: "Я отфильтровываю еду прямо из морского ила.",
-                threats: "Pollution and fishing nets.", likes: 0
+                introRu: "Фильтрую еду прямо из ила на дне моря.",
+                threats: "Entanglement and pollution.", likes: 0
             },
             {
-                id: 'fin-whale', nameEn: 'Fin Whale', nameRu: 'Финвал', username: '@fast_giant',
-                avatar: 'https://images.unsplash.com/photo-1576809808081-908411462450?auto=format&fit=crop&q=80&w=400',
-                motionImg: 'https://images.unsplash.com/photo-1551924708-c5604712260c?auto=format&fit=crop&q=80&w=800',
-                species: 'Balaenoptera physalus', habitat: 'Barents, Bering Seas',
+                id: 'fin-whale', nameEn: 'Fin Whale', nameRu: 'Финвал', username: '@speedy_giant',
+                avatar: 'https://static.wikia.nocookie.net/creatures-of-the-world/images/b/bb/Fin_whale_1.jpg/revision/latest/scale-to-width-down/1200?cb=20160531130441',
+                motionImg: 'https://i.pinimg.com/originals/ef/4b/fa/ef4bfa01fd1452401015ef430e7cac44.jpg?nii=t',
+                species: 'Balaenoptera physalus', habitat: 'Barents, Bering, Okhotsk Seas',
                 stats: { size: '26 m', weight: '75 t', age: '100 years' },
                 diet: [
-                    { nameEn: 'Krill', nameRu: 'Криль', icon: '🦐', descEn: 'Small shrimp.', descRu: 'Мелкие рачки.' },
-                    { nameEn: 'Small Fish', nameRu: 'Мелкая рыба', icon: '🐟', descEn: 'Capelin and cod.', descRu: 'Мойва и треска.' }
+                    { nameEn: 'Krill', nameRu: 'Криль', icon: '🦐', descEn: 'Massive swarms.', descRu: 'Огромные стаи рачков.' }
                 ],
-                funFactEn: 'I reach 40 km/h! I am the second largest animal on Earth.',
-                funFactRu: 'Я развиваю скорость 40 км/ч! Я второе по величине животное.',
-                introEn: "Fast giant of the deep blue oceans.",
-                introRu: "Быстрый великан глубоких синих океанов.",
-                threats: "Collisions with ships.", likes: 0
+                funFactEn: 'I reach 40 km/h! Second largest animal on Earth.',
+                funFactRu: 'Разгоняюсь до 40 км/ч! Второе по размеру животное.',
+                introEn: "Fast giant of the deep blue Arctic oceans.",
+                introRu: "Быстрый гигант глубоких арктических вод.",
+                threats: "Ship strikes and waste.", likes: 0
             },
             {
                 id: 'humpback-whale', nameEn: 'Humpback Whale', nameRu: 'Горбатый кит', username: '@bubble_singer',
-                avatar: 'https://images.unsplash.com/photo-1577995190606-042823531071?auto=format&fit=crop&q=80&w=400',
-                motionImg: 'https://images.unsplash.com/photo-1575893154980-30090185100f?auto=format&fit=crop&q=80&w=800',
+                avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Humpback_whale_%28Megaptera_novaeangliae%29_calf_Moorea_2.jpg/1200px-Humpback_whale_%28Megaptera_novaeangliae%29_calf_Moorea_2.jpg',
+                motionImg: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/1_Wallen_Humpback_Whale_gf86.jpg/1200px-1_Wallen_Humpback_Whale_gf86.jpg',
                 species: 'Megaptera novaeangliae', habitat: 'Barents, Chukchi, Okhotsk Seas',
                 stats: { size: '14 m', weight: '30 t', age: '45 years' },
-                diet: [
-                    { nameEn: 'Flock Fish', nameRu: 'Стайная рыба', icon: '🐟', descEn: 'Capelin and herring.', descRu: 'Мойва и сельдь.' },
-                    { nameEn: 'Pelagic Shrimp', nameRu: 'Креветки', icon: '🦐', descEn: 'Open sea crustaceans.', descRu: 'Морские рачки.' }
-                ],
-                funFactEn: 'I create "bubble rings" to trap fish! My songs are magical.',
-                funFactRu: 'Я создаю "пузырьковые сети", чтобы ловить рыбу!',
-                introEn: "I love to jump and splash! Famous for my songs.",
-                introRu: "Обожаю прыгать и петь песни под водой.",
+                diet: [{ nameEn: 'Fish', nameRu: 'Рыба', icon: '🐟', descEn: 'Schooling fish.', descRu: 'Стайная рыба.' }],
+                funFactEn: 'I use "bubble nets" to catch my dinner! I love to sing.',
+                funFactRu: 'Ловлю ужин пузырьковыми сетями! Обожаю петь.',
+                introEn: "I love to jump and splash! Acrobat of the sea.",
+                introRu: "Обожаю прыгать и плескаться! Акробат морей.",
                 threats: "Plastic pollution.", likes: 0
             },
             {
                 id: 'blue-whale', nameEn: 'Blue Whale', nameRu: 'Синий кит', username: '@ocean_titan',
-                avatar: 'https://images.unsplash.com/photo-1621360651473-723931213110?auto=format&fit=crop&q=80&w=400',
-                motionImg: 'https://images.unsplash.com/photo-1589393436710-772122323211?auto=format&fit=crop&q=80&w=800',
+                avatar: 'https://avatars.mds.yandex.net/i?id=8d60328709efe8c40e5e8755870dc5c2_l-4576399-images-thumbs&n=13',
+                motionImg: 'https://cdn.britannica.com/59/226359-050-B420A279/Blue-whale.jpg',
                 species: 'Balaenoptera musculus', habitat: 'Barents, Chukchi Seas',
                 stats: { size: '33 m', weight: '150 t', age: '85 years' },
-                diet: [{ nameEn: 'Krill', nameRu: 'Криль', icon: '🦐', descEn: 'Millions of tiny shrimp.', descRu: 'Миллионы мелких рачков.' }],
-                funFactEn: 'My heart is as big as a car! I eat 4 tonnes a day.',
-                funFactRu: 'Мое сердце размером с машину! Я ем 4 тонны в день.',
-                introEn: "I am the largest animal to ever live on Earth.",
-                introRu: "Я самое крупное животное в истории Земли.",
-                threats: "Warming ocean temperatures.", likes: 0
+                diet: [{ nameEn: 'Krill', nameRu: 'Криль', icon: '🦐', descEn: 'Tiny shrimp.', descRu: 'Миллионы рачков.' }],
+                funFactEn: 'My heart is the size of a car! Biggest animal ever.',
+                funFactRu: 'Сердце размером с машину! Самый большой в мире.',
+                introEn: "Gentle titan. I eat millions of krill daily.",
+                introRu: "Добрый титан. Ем миллионы рачков в день.",
+                threats: "Warming oceans.", likes: 0
             },
             {
                 id: 'sperm-whale', nameEn: 'Sperm Whale', nameRu: 'Кашалот', username: '@deep_diver',
-                avatar: 'https://images.unsplash.com/photo-1620352219502-d922a9446d6b?auto=format&fit=crop&q=80&w=400',
-                motionImg: 'https://images.unsplash.com/photo-1568430462989-441609751d0c?auto=format&fit=crop&q=80&w=800',
+                avatar: 'https://i.pinimg.com/originals/1c/26/9d/1c269d17e8325bc8b50b5d60b1ba0976.jpg',
+                motionImg: 'https://www.counterpunch.org/wp-content/uploads/2024/02/Mother_and_baby_sperm_whale-scaled.jpg',
                 species: 'Physeter macrocephalus', habitat: 'Barents, Bering, Okhotsk Seas',
                 stats: { size: '16 m', weight: '57 t', age: '45 years' },
-                diet: [{ nameEn: 'Giant Squids', nameRu: 'Гигантские кальмары', icon: '🦑', descEn: 'My sworn enemies.', descRu: 'Заклятые враги.' }],
-                funFactEn: 'I dive up to 2 km! I make "ambergris" for perfumes.',
-                funFactRu: 'Ныряю на 2 км! В моем теле образуется амбра.',
-                introEn: "Biggest brain of any animal. Master of the deep.",
-                introRu: "У меня самый большой мозг. Я хозяин бездны.",
-                threats: "Ghost fishing nets.", likes: 0
+                diet: [{ nameEn: 'Giant Squids', nameRu: 'Гигантские кальмары', icon: '🦑', descEn: 'My main enemy.', descRu: 'Мой главный враг.' }],
+                funFactEn: 'I dive up to 2 km! Head full of waxy oil.',
+                funFactRu: 'Ныряю на 2 км! В голове ценная амбра.',
+                introEn: "Master of the dark abyss. Largest brain.",
+                introRu: "Хозяин темной бездны. Самый большой мозг.",
+                threats: "Swallowing trash.", likes: 0
             },
             {
                 id: 'killer-whale', nameEn: 'Killer Whale', nameRu: 'Косатка', username: '@sea_wolf',
-                avatar: 'https://images.unsplash.com/photo-1551244072-5d12893278ab?auto=format&fit=crop&q=80&w=400',
-                motionImg: 'https://images.unsplash.com/photo-1502475734217-d4a79910682c?auto=format&fit=crop&q=80&w=800',
-                species: 'Orcinus orca', habitat: 'All Arctic and Pacific Seas',
+                avatar: 'https://static.wikia.nocookie.net/killerwhales/images/d/d1/PackIce_fournier.bapt.jpg/revision/latest/scale-to-width-down/1200?cb=20231205052302',
+                motionImg: 'https://static.wikia.nocookie.net/killerwhales/images/d/de/Norwegian_Daniel_John_Benton.jpg/revision/latest/scale-to-width-down/1200?cb=20231214082606',
+                species: 'Orcinus orca', habitat: 'All Arctic Oceans',
                 stats: { size: '10 m', weight: '10 t', age: '85 years' },
                 diet: [
-                    { nameEn: 'Salmon', nameRu: 'Лосось', icon: '🐟', descEn: 'Tasty fatty fish.', descRu: 'Вкусная жирная рыба.' },
-                    { nameEn: 'Seals', nameRu: 'Тюлени', icon: '🦭', descEn: 'We hunt them in pods.', descRu: 'Охотимся всей стаей.' }
+                    { nameEn: 'Salmon', nameRu: 'Лосось', icon: '🐟', descEn: 'Nutritious fish.', descRu: 'Питательная рыба.' },
+                    { nameEn: 'Seals', nameRu: 'Тюлени', icon: '🦭', descEn: 'Strategic hunting.', descRu: 'Стратегическая охота.' }
                 ],
-                funFactEn: 'Every whale pod has its own dialect of sounds!',
-                funFactRu: 'У каждой семьи косаток свой диалект звуков!',
-                introEn: "Smart and social predator. We work together.",
-                introRu: "Умный хищник. Мы охотимся сообща.",
-                threats: "Toxins in ocean water.", likes: 0
+                funFactEn: 'Smart hunters with unique family dialects!',
+                funFactRu: 'Умные охотники со своим диалектом!',
+                introEn: "Apex predator. We hunt in packs.",
+                introRu: "Главный хищник. Охотимся стаями.",
+                threats: "Chemical waste.", likes: 0
             },
             {
                 id: 'harbour-porpoise', nameEn: 'Harbour Porpoise', nameRu: 'Морская свинья', username: '@shy_neighbor',
-                avatar: 'https://images.unsplash.com/photo-1579616267539-544c30650313?auto=format&fit=crop&q=80&w=400',
-                motionImg: 'https://images.unsplash.com/photo-1578517868961-144697012333?auto=format&fit=crop&q=80&w=800',
-                species: 'Phocoena phocoena', habitat: 'White, Barents Seas',
+                avatar: 'https://static.wikia.nocookie.net/scratchpadvideo/images/f/fc/Harbour_Porpoise.jpg/revision/latest/scale-to-width-down/1200?cb=20241102063607',
+                motionImg: 'https://marinedevelopments.blog.gov.uk/wp-content/uploads/sites/93/2023/12/iStock-180820223.jpg',
+                species: 'Phocoena phocoena', habitat: 'White, Barents, Okhotsk Seas',
                 stats: { size: '1.5 m', weight: '55 kg', age: '17 years' },
-                diet: [{ nameEn: 'Herring', nameRu: 'Сельдь', icon: '🐟', descEn: 'Small schooling fish.', descRu: 'Мелкая стайная рыба.' }],
-                funFactEn: 'I sounds like a "sneeze" when I breathe!',
-                funFactRu: 'Я звучу как "чих", когда дышу у поверхности!',
-                introEn: "I swim close to the shore in quiet bays.",
-                introRu: "Я живу у берегов в тихих заливах.",
-                threats: "Coastal trash.", likes: 0
+                diet: [{ nameEn: 'Herring', nameRu: 'Сельдь', icon: '🐟', descEn: 'Tasty schools of fish.', descRu: 'Мелкая вкусная рыба.' }],
+                funFactEn: 'I "sneeze" at the surface! Very shy neighbor.',
+                funFactRu: 'Я "чихаю" у поверхности! Очень робкая.',
+                introEn: "Quiet life close to the Arctic shores.",
+                introRu: "Тихо живу у арктических берегов.",
+                threats: "Abandoned nets.", likes: 0
             },
             {
                 id: 'walrus', nameEn: 'Walrus', nameRu: 'Морж', username: '@tusk_boss',
-                avatar: 'https://images.unsplash.com/photo-1590424614131-016428d08560?auto=format&fit=crop&q=80&w=400',
-                motionImg: 'https://images.unsplash.com/photo-1589408643178-903961168f02?auto=format&fit=crop&q=80&w=800',
-                species: 'Odobenus rosmarus', habitat: 'Kara, Laptev, Chukchi Seas',
-                stats: { size: '3.8 m', weight: '1550 kg', age: '35 years' },
-                diet: [
-                    { nameEn: 'Mollusks', nameRu: 'Моллюски', icon: '🐚', descEn: 'Shellfish from mud.', descRu: 'Ракушки из ила.' },
-                    { nameEn: 'Crustaceans', nameRu: 'Раки', icon: '🦐', descEn: 'Tasty benthic food.', descRu: 'Вкусная еда со дна.' }
-                ],
-                funFactEn: 'My tusks are multi-tools! I pull myself on ice.',
-                funFactRu: 'Бивни — это мультитул! Я вылезаю на них на лед.',
-                introEn: "I love to sleep on ice floes. Very thick skin.",
-                introRu: "Обожаю спать на льдинах. У меня толстая кожа.",
-                threats: "Global warming melting ice.", likes: 0
+                avatar: 'https://avatars.mds.yandex.net/i?id=d07cdde594646a9c1eb328627df929d7_l-5886407-images-thumbs&n=13',
+                motionImg: 'https://static.tildacdn.com/tild6338-3461-4831-b337-326437343138/IMG_6486_FJL_2013_by.jpg',
+                species: 'Odobenus rosmarus', habitat: 'Barents, Kara, Laptev Seas',
+                stats: { size: '3.8 m', weight: '1.5 t', age: '35 years' },
+                diet: [{ nameEn: 'Mollusks', nameRu: 'Моллюски', icon: '🐚', descEn: 'Searching in mud.', descRu: 'Ищу их в иле.' }],
+                funFactEn: 'Tusks can be 1 meter long! Multi-tools.',
+                funFactRu: 'Бивни до 1 метра! Мои инструменты.',
+                introEn: "Sleeping on ice with my huge family.",
+                introRu: "Сплю на льдинах со своей семьей.",
+                threats: "Melting sea ice.", likes: 0
             },
             {
                 id: 'ringed-seal', nameEn: 'Ringed Seal', nameRu: 'Кольчатая нерпа', username: '@ice_nests',
-                avatar: 'https://images.unsplash.com/photo-1615818458907-415236476411?auto=format&fit=crop&q=80&w=400',
-                motionImg: 'https://images.unsplash.com/photo-1589656966895-2f33e7653819?auto=format&fit=crop&q=80&w=800',
-                species: 'Pusa hispida', habitat: 'All Arctic seas of Russia',
+                avatar: 'https://i.pinimg.com/originals/d7/a5/fb/d7a5fbec9dfa4f52527d430dd83bc89a.jpg',
+                motionImg: 'https://i.natgeofe.com/n/4dc5eaf2-d200-41ac-85f2-cfb33d84b496/ringed-seal_2x1.jpg',
+                species: 'Pusa hispida', habitat: 'All Arctic regions',
                 stats: { size: '1.3 m', weight: '70 kg', age: '50 years' },
-                diet: [
-                    { nameEn: 'Polar Cod', nameRu: 'Сайка', icon: '🐟', descEn: 'Main Arctic fish.', descRu: 'Главная рыба Севера.' },
-                    { nameEn: 'Shrimps', nameRu: 'Креветки', icon: '🦐', descEn: 'Small benthic food.', descRu: 'Мелкие обитатели дна.' }
-                ],
-                funFactEn: 'I build snowy nests! My claws are 2.5 cm thick.',
-                funFactRu: 'Я строю снежные гнезда! Мои когти — 2.5 см толщиной!',
-                introEn: "Small and tough. Beautiful ring patterns.",
-                introRu: "Маленькая и выносливая. У меня узор из колец.",
-                threats: "Early snow melt.", likes: 0
+                diet: [{ nameEn: 'Arctic Cod', nameRu: 'Сайка', icon: '🐟', descEn: 'Main food source.', descRu: 'Главная пища.' }],
+                funFactEn: 'Only seal to build snow nests for pups!',
+                funFactRu: 'Единственная нерпа со снежным гнездом!',
+                introEn: "Small, tough and beautifully patterned.",
+                introRu: "Маленькая, сильная и с узорами.",
+                threats: "Snow loss.", likes: 0
             },
             {
                 id: 'bearded-seal', nameEn: 'Bearded Seal', nameRu: 'Морской заяц', username: '@whiskers_one',
-                avatar: 'https://images.unsplash.com/photo-1578517868961-144697012333?auto=format&fit=crop&q=80&w=400',
-                motionImg: 'https://images.unsplash.com/photo-1517783999520-f068d7431a60?auto=format&fit=crop&q=80&w=800',
+                avatar: 'https://avatars.mds.yandex.net/i?id=75905238aae96722a53efa357e797e55_l-8340522-images-thumbs&n=13',
+                motionImg: 'https://live.staticflickr.com/65535/53618407793_84816e1cc2_b.jpg',
                 species: 'Erignathus barbatus', habitat: 'All Arctic Seas of Russia',
                 stats: { size: '2.3 m', weight: '300 kg', age: '28 years' },
-                diet: [
-                    { nameEn: 'Crabs', nameRu: 'Крабы', icon: '🦀', descEn: 'Found on seabed.', descRu: 'Ищу их на морском дне.' },
-                    { nameEn: 'Worms', nameRu: 'Черви', icon: '🐛', descEn: 'Benthic invertebrates.', descRu: 'Донные беспозвоночные.' }
-                ],
-                funFactEn: 'Longest whiskers! They help feel for food.',
-                funFactRu: 'Самые длинные усы! Помогают искать еду.',
-                introEn: "I love to drift on the ice. Calm spirit.",
-                introRu: "Люблю дрейфовать на льдинах. Я очень спокойная.",
-                threats: "Water pollution.", likes: 0
-            },
-            {
-                id: 'harp-seal', nameEn: 'Harp Seal', nameRu: 'Гренландский тюлень', username: '@white_pup',
-                avatar: 'https://images.unsplash.com/photo-1595986228354-f304632100d2?auto=format&fit=crop&q=80&w=400',
-                motionImg: 'https://images.unsplash.com/photo-1591543620688-686343738224?auto=format&fit=crop&q=80&w=800',
-                species: 'Pagophilus groenlandicus', habitat: 'White, Barents, Kara Seas',
-                stats: { size: '1.85 m', weight: '160 kg', age: '40 years' },
-                diet: [{ nameEn: 'Fish', nameRu: 'Рыба', icon: '🐟', descEn: 'Capelin and herring.', descRu: 'Мойва и сельдь.' }],
-                funFactEn: 'Babies are white balls! I dive 200 meters.',
-                funFactRu: 'Дети рождаются белыми! Я ныряю на 200 метров.',
-                introEn: "I live on the ice of the White Sea.",
-                introRu: "Я живу на льдах Белого моря.",
-                threats: "Early ice break.", likes: 0
-            },
-            {
-                id: 'ribbon-seal', nameEn: 'Ribbon Seal', nameRu: 'Крылатка', username: '@striped_beauty',
-                avatar: 'https://images.unsplash.com/photo-1518116514115-385002237000?auto=format&fit=crop&q=80&w=400',
-                motionImg: 'https://images.unsplash.com/photo-1564053489985-123470201009?auto=format&fit=crop&q=80&w=800',
-                species: 'Histriophoca fasciata', habitat: 'Bering, Sea of Okhotsk',
-                stats: { size: '1.7 m', weight: '85 kg', age: '25 years' },
-                diet: [{ nameEn: 'Pollock', nameRu: 'Минтай', icon: '🐟', descEn: 'I dive silently.', descRu: 'Я ныряю бесшумно.' }],
-                funFactEn: 'White ribbons on black fur! Rare seal.',
-                funFactRu: 'Белые ленты на черном меху! Редкая нерпа.',
-                introEn: "Elusive beauty. I live far from land.",
-                introRu: "Скрытная и красивая. Живу вдали от суши.",
-                threats: "Habitat changes.", likes: 0
-            },
-            {
-                id: 'spotted-seal', nameEn: 'Spotted Seal', nameRu: 'Ларга', username: '@spotted_one',
-                avatar: 'https://images.unsplash.com/photo-1551324620-514026103055?auto=format&fit=crop&q=80&w=400',
-                motionImg: 'https://images.unsplash.com/photo-1606914506174-871623400203?auto=format&fit=crop&q=80&w=800',
-                species: 'Phoca largha', habitat: 'Bering, Okhotsk Seas',
-                stats: { size: '1.55 m', weight: '110 kg', age: '35 years' },
-                diet: [{ nameEn: 'Salmon', nameRu: 'Лосось', icon: '🐟', descEn: 'Fresh ocean fish.', descRu: 'Свежая морская рыба.' }],
-                funFactEn: 'Black spots all over! White pups.',
-                funFactRu: 'Все тело в пятнышках! Дети рождаются белыми.',
-                introEn: "I love sun on rocks. Curious seal.",
-                introRu: "Обожаю греться на солнце. Любопытная нерпа.",
+                diet: [{ nameEn: 'Crabs', nameRu: 'Крабы', icon: '🦀', descEn: 'Benthic life.', descRu: 'Донная жизнь.' }],
+                funFactEn: 'Longest whiskers! I feel for food in mud.',
+                funFactRu: 'Самые длинные усы! Ищу ими еду.',
+                introEn: "Very calm spirit. I drift on the ice.",
+                introRu: "Спокойный дух. Дрейфую на льду.",
                 threats: "Pollution.", likes: 0
             },
             {
-                id: 'murre-thick', nameEn: 'Thickbilled Murre', nameRu: 'Толстоклювая кайра', username: '@cliff_flyer',
-                avatar: 'https://images.unsplash.com/photo-1589656966895-2f33e7653819?auto=format&fit=crop&q=80&w=400',
-                motionImg: 'https://images.unsplash.com/photo-1615751963437-821232710232?auto=format&fit=crop&q=80&w=800',
-                species: 'Uria lomvia', habitat: 'All Arctic Seas of Russia',
+                id: 'harp-seal', nameEn: 'Harp Seal', nameRu: 'Гренландский тюлень', username: '@white_pup',
+                avatar: 'https://static.wikia.nocookie.net/029dc2df-4ba7-4c6d-a83f-73f184b11eb4/scale-to-width/755',
+                motionImg: 'https://cdn.britannica.com/09/124009-050-19783BDB.jpg',
+                species: 'Pagophilus groenlandicus', habitat: 'White, Barents Seas',
+                stats: { size: '1.85 m', weight: '160 kg', age: '40 years' },
+                diet: [{ nameEn: 'Fish', nameRu: 'Рыба', icon: '🐟', descEn: 'Small prey.', descRu: 'Мелкая добыча.' }],
+                funFactEn: 'Babies are white fluffy balls of snow!',
+                funFactRu: 'Дети — белые пушистые комочки!',
+                introEn: "I live on the ice of the White Sea.",
+                introRu: "Живу на льдах Белого моря.",
+                threats: "Early ice break-up.", likes: 0
+            },
+            {
+                id: 'ribbon-seal', nameEn: 'Ribbon Seal', nameRu: 'Крылатка', username: '@striped_beauty',
+                avatar: 'https://avatars.mds.yandex.net/i?id=b215a3633aa9a36f7460f044280de6d0_l-5246113-images-thumbs&n=13',
+                motionImg: 'https://otlibrary.com/wp-content/gallery/ribbon-seals/c_mkelly_sea_of_okhotsk__1.jpg',
+                species: 'Histriophoca fasciata', habitat: 'Bering, Okhotsk Seas',
+                stats: { size: '1.7 m', weight: '85 kg', age: '25 years' },
+                diet: [{ nameEn: 'Pollock', nameRu: 'Минтай', icon: '🐟', descEn: 'I dive silently.', descRu: 'Ныряю бесшумно.' }],
+                funFactEn: 'Unique white ribbons on dark fur!',
+                funFactRu: 'Уникальные ленты на темном меху!',
+                introEn: "Elusive beauty of the open Arctic sea.",
+                introRu: "Скрытная красавица открытых морей.",
+                threats: "Ecosystem shift.", likes: 0
+            },
+            {
+                id: 'spotted-seal', nameEn: 'Spotted Seal', nameRu: 'Ларга', username: '@spotted_one',
+                avatar: 'https://avatars.mds.yandex.net/i?id=1f17bdd06b0559558b1488a64faacd77f433915d-12445014-images-thumbs&n=13',
+                motionImg: 'https://www.alaskasealife.org/uploads/animals/images/spottedseal2.jpg',
+                species: 'Phoca largha', habitat: 'Bering, Okhotsk, Chukchi Seas',
+                stats: { size: '1.55 m', weight: '110 kg', age: '35 years' },
+                diet: [{ nameEn: 'Salmon', nameRu: 'Лосось', icon: '🐟', descEn: 'Fresh fish.', descRu: 'Свежая рыба.' }],
+                funFactEn: 'Black spots everywhere! Curious seal.',
+                funFactRu: 'Пятнышки повсюду! Любопытная.',
+                introEn: "I love sunbathing on Arctic rocks.",
+                introRu: "Люблю загорать на камнях.",
+                threats: "Water pollution.", likes: 0
+            },
+            {
+                id: 'polar-bear', nameEn: 'Polar Bear', nameRu: 'Белый медведь', username: '@ice_king',
+                avatar: 'https://cdn.culture.ru/images/8e49f73b-5a07-59e8-a9a5-cce6c518fc13',
+                motionImg: 'https://cdnstatic.rg.ru/uploads/images/167/98/13/iStock-614046312.jpg',
+                species: 'Ursus maritimus', habitat: 'All Arctic ice fields',
+                stats: { size: '2.5 m', weight: '500 kg', age: '25 years' },
+                diet: [{ nameEn: 'Seals', nameRu: 'Тюлени', icon: '🦭', descEn: 'Rich blubber source.', descRu: 'Источник жира.' }],
+                funFactEn: 'My fur is transparent and my skin is black!',
+                funFactRu: 'Мех прозрачный, а кожа — черная!',
+                introEn: "Top predator of the frozen Arctic world.",
+                introRu: "Главный хищник ледяного мира.",
+                threats: "Ice melting.", likes: 0
+            },
+            {
+                id: 'murre-thick', nameEn: 'Thick-billed Murre', nameRu: 'Толстоклювая кайра', username: '@cliff_flyer',
+                avatar: 'https://live.staticflickr.com/65535/48301804081_f03e3538f8_k.jpg',
+                motionImg: 'https://avatars.mds.yandex.net/i?id=04ff418c89f2e7636a7f78b6a2b8ed843c1c9629-10934180-images-thumbs&n=13',
+                species: 'Uria lomvia', habitat: 'All Russian Arctic Seas',
                 stats: { size: '41 cm', weight: '1.5 kg', age: '30 years' },
                 diet: [
-                    { nameEn: 'Fish', nameRu: 'Рыба', icon: '🐟', descEn: 'Diving to 90 m.', descRu: 'Ныряю за ней на 90 м.' },
-                    { nameEn: 'Krill', nameRu: 'Криль', icon: '🦐', descEn: 'Tasty crustaceans.', descRu: 'Вкусные рачки.' }
+                    { nameEn: 'Fish', nameRu: 'Рыба', icon: '🐟', descEn: 'Diving 90m deep.', descRu: 'Ныряю на 90м.' },
+                    { nameEn: 'Krill', nameRu: 'Криль', icon: '🦐', descEn: 'Small crustaceans.', descRu: 'Мелкие рачки.' }
                 ],
-                funFactEn: 'I nest on narrow cliffs. Penguin who flies!',
-                funFactRu: 'Гнезжусь на скалах. Пингвин, который летает!',
-                introEn: "Huge colonies called 'bird bazaars'.",
-                introRu: "Живем в колониях — птичьих базарах.",
+                funFactEn: 'I build my nest on narrow cliff edges!',
+                funFactRu: 'Вью гнезда на узких уступах скал!',
+                introEn: "We live in massive bird bazaars.",
+                introRu: "Живем на шумных птичьих базарах.",
                 threats: "Oil spills.", likes: 0
             },
             {
                 id: 'murre-common', nameEn: 'Common Murre', nameRu: 'Тонкоклювая кайра', username: '@sea_bird',
-                avatar: 'https://images.unsplash.com/photo-1551924708-c5604712260c?auto=format&fit=crop&q=80&w=400',
-                motionImg: 'https://images.unsplash.com/photo-1516635857483-19533304011d?auto=format&fit=crop&q=80&w=800',
+                avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Guillemot_%28Uria_aalge%29_in_flight.jpg/1280px-Guillemot_%28Uria_aalge%29_in_flight.jpg',
+                motionImg: 'https://upload.wikimedia.org/wikipedia/commons/b/bb/Common_murre_o%27brien%27s_witless_bay_boat_tour_7.21.22_DSC_8183.jpg',
                 species: 'Uria aalge', habitat: 'Barents, Bering Seas',
                 stats: { size: '42 cm', weight: '1 kg', age: '32 years' },
-                diet: [{ nameEn: 'Small fish', nameRu: 'Мелкая рыба', icon: '🐟', descEn: 'Hunting in groups.', descRu: 'Охотимся стаями.' }],
-                funFactEn: 'Champion diver! 150 meters deep.',
+                diet: [{ nameEn: 'Small Fish', nameRu: 'Мелкая рыба', icon: '🐟', descEn: 'Team hunting.', descRu: 'Командная охота.' }],
+                funFactEn: 'Champion diver! Reach 150 meters deep.',
                 funFactRu: 'Чемпион по нырянию! 150 метров.',
-                introEn: "Social birds on rocky shores.",
-                introRu: "Общительные птицы на скалах.",
+                introEn: "Social bird of the steep rocky shores.",
+                introRu: "Общительная птица скалистых берегов.",
                 threats: "Overfishing.", likes: 0
             },
             {
                 id: 'little-auk', nameEn: 'Little Auk', nameRu: 'Люрик', username: '@tiny_diver',
-                avatar: 'https://images.unsplash.com/photo-1568430462989-441609751d0c?auto=format&fit=crop&q=80&w=400',
-                motionImg: 'https://images.unsplash.com/photo-1577995190606-042823531071?auto=format&fit=crop&q=80&w=800',
+                avatar: 'https://i.pinimg.com/originals/85/ae/72/85ae72c5cb8ef5669d90889fea2d2208.jpg',
+                motionImg: 'https://i.pinimg.com/originals/c8/5f/12/c85f12fad4ed0990f63012506d8bb063.jpg',
                 species: 'Alle alle', habitat: 'Barents, Kara Seas',
                 stats: { size: '18 cm', weight: '165 g', age: '16 years' },
                 diet: [{ nameEn: 'Plankton', nameRu: 'Планктон', icon: '🦐', descEn: 'Micro crustaceans.', descRu: 'Микро-рачки.' }],
-                funFactEn: 'Small as a sparrow! Millions gather.',
-                funFactRu: 'Размером с воробья! Мы миллионы.',
-                introEn: "Smallest seabird. I fly very fast.",
+                funFactEn: 'Small as a sparrow! Millions nest here.',
+                funFactRu: 'Размером с воробья! Нас миллионы.',
+                introEn: "Smallest seabird. Fly very fast.",
                 introRu: "Самая маленькая птица. Летаю быстро.",
                 threats: "Current changes.", likes: 0
-            },
-            {
-                id: 'atlantic-puffin', nameEn: 'Atlantic Puffin', nameRu: 'Тупик', username: '@sea_parrot',
-                avatar: 'https://images.unsplash.com/photo-1557008075-7f2c5efa4cfd?auto=format&fit=crop&q=80&w=400',
-                motionImg: 'https://images.unsplash.com/photo-1579616267539-544c30650313?auto=format&fit=crop&q=80&w=800',
-                species: 'Fratercula arctica', habitat: 'Barents Sea',
-                stats: { size: '33 cm', weight: '475 g', age: '20 years' },
-                diet: [
-                    { nameEn: 'Small fish', nameRu: 'Мелкая рыба', icon: '🐟', descEn: 'Up to 20 in my beak!', descRu: 'До 20 штук в клюве!' },
-                    { nameEn: 'Squids', nameRu: 'Кальмары', icon: '🦑', descEn: 'Deep-sea treats.', descRu: 'Морские деликатесы.' }
-                ],
-                funFactEn: 'Colorful beak in summer! Sea parrot.',
-                funFactRu: 'Яркий клюв летом! Морской попугай.',
-                introEn: "I live in holes on cliff tops.",
-                introRu: "Живу в норках на вершинах скал.",
-                threats: "Pollution.", likes: 0
             }
         ];
 
@@ -490,8 +474,8 @@
             if (a) {
                 a.likes++;
                 playClickSound(1000);
-                const el = document.getElementById(`like-count-${id}`);
-                const btn = document.getElementById(`like-btn-${id}`);
+                const el = document.getElementById(`like-count-ui`);
+                const btn = document.getElementById(`like-btn-main`);
                 if (el) el.innerText = a.likes;
                 if (btn) { btn.classList.add('like-pop'); setTimeout(() => btn.classList.remove('like-pop'), 400); }
             }
@@ -507,8 +491,8 @@
             const nidt = document.getElementById('nav-interesting-dt');
             const nlmb = document.getElementById('nav-landing-mob');
             const nimb = document.getElementById('nav-interesting-mob');
-            const active = 'px-6 py-2 rounded-xl font-black text-xs sm:text-sm uppercase text-sky-600 bg-white shadow-sm transition-all';
-            const inactive = 'px-6 py-2 rounded-xl font-black text-xs sm:text-sm uppercase text-sky-400 hover:text-sky-600 transition-all';
+            const active = 'px-6 py-2.5 rounded-xl font-black text-xs sm:text-sm uppercase text-sky-600 bg-white shadow-sm transition-all';
+            const inactive = 'px-6 py-2.5 rounded-xl font-black text-xs sm:text-sm uppercase text-sky-400 hover:text-sky-600 transition-all';
             
             if (nldt) nldt.className = state.view === 'landing' ? active : inactive;
             if (nidt) nidt.className = state.view === 'interesting' ? active : inactive;
@@ -553,8 +537,8 @@
                             <div class="text-center"><p class="text-xl sm:text-2xl font-black text-sky-900">${a.stats.age}</p><p class="text-[10px] text-sky-400 font-black uppercase tracking-widest">Age</p></div>
                         </div>
                         <div class="flex gap-4 w-full max-w-sm">
-                            <button id="like-btn-${a.id}" onclick="handleLike('${a.id}')" class="flex-1 bg-red-500 hover:bg-red-600 active:scale-95 text-white font-black text-xl py-4 sm:py-5 rounded-[2.5rem] shadow-xl transition-all flex items-center justify-center gap-3">
-                                <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg><span id="like-count-${a.id}">${a.likes}</span>
+                            <button id="like-btn-main" onclick="handleLike('${a.id}')" class="flex-1 bg-red-500 hover:bg-red-600 active:scale-95 text-white font-black text-xl py-4 sm:py-5 rounded-[2.5rem] shadow-xl transition-all flex items-center justify-center gap-3">
+                                <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg><span id="like-count-ui">${a.likes}</span>
                             </button>
                             <button onclick="showLanding(); playClickSound(400);" class="bg-white text-sky-500 p-4 sm:p-5 rounded-[2.5rem] border-2 border-sky-50 active:scale-90 transition-transform btn-click-effect"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
                         </div>
@@ -574,7 +558,7 @@
             if (state.currentTab === 'feed') return `
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
                     <div class="lg:col-span-7 space-y-12">
-                        <div class="bg-white p-8 sm:p-10 rounded-[3rem] shadow-sm border border-sky-50"><h3 class="text-2xl font-black text-sky-950 mb-4">A story from my day</h3><p class="text-sky-800 text-lg leading-relaxed font-medium italic">"The water is cold but I love it! Today I spent hours exploring the icy depths."</p></div>
+                        <div class="bg-white p-8 sm:p-10 rounded-[3rem] shadow-sm border border-sky-50"><h3 class="text-2xl font-black text-sky-950 mb-4">A story from my day</h3><p class="text-sky-800 text-lg leading-relaxed font-medium italic">"The Arctic world is beautiful. Today I spent time diving and looking for my favorite food. It's a great life in the North!"</p></div>
                         <section><h3 class="text-2xl font-black text-sky-950 mb-8 flex items-center gap-3"><span class="bg-sky-500 text-white p-2 rounded-2xl shadow-lg"><svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M11 9H9V2H7V9H5V2H3V9C3 11.12 4.66 12.84 6.75 12.97V22H9.25V12.97C11.34 12.84 13 11.12 13 9V2H11V9ZM16 6V14H18.5V22H21V2H18.5C17.12 2 16 3.12 16 4.5V6Z"/></svg></span>My favorite diet</h3><div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             ${a.diet.map(item => `
                                 <div class="bg-sky-50 p-6 rounded-[2.5rem] border border-sky-100 flex items-center gap-4 hover:scale-105 transition-transform">
@@ -582,16 +566,16 @@
                                     <div><h4 class="font-black text-sky-900 text-lg">${item.nameEn}</h4><p class="text-sky-600 text-sm font-bold">${item.descEn}</p></div>
                                 </div>`).join('')}
                         </div></section>
-                        <section class="bg-red-50 p-8 sm:p-10 rounded-[3.5rem] border-4 border-red-100 shadow-inner"><h3 class="text-2xl font-black text-red-600 mb-6 flex items-center gap-3"><span class="text-3xl">⚠️</span> Threats</h3><p class="text-red-900 font-bold text-lg leading-relaxed mb-6">${a.threats}</p><div class="bg-white p-6 rounded-[2rem] border border-red-200"><h4 class="text-sky-600 font-black mb-2 uppercase text-xs tracking-widest">How to help:</h4><p class="text-sky-800 font-medium leading-relaxed italic">You can protect us! Use the <b>"Reduce, Reuse, Recycle"</b> rule at home and school. Turn off lights to save energy and help stop the ice from melting.</p></div></section>
+                        <section class="bg-red-50 p-8 sm:p-10 rounded-[3.5rem] border-4 border-red-100 shadow-inner"><h3 class="text-2xl font-black text-red-600 mb-6 flex items-center gap-3"><span class="text-3xl">⚠️</span> Threats</h3><p class="text-red-900 font-bold text-lg leading-relaxed mb-6">${a.threats}</p><div class="bg-white p-6 rounded-[2rem] border border-red-200"><h4 class="text-sky-600 font-black mb-2 uppercase text-xs tracking-widest">How to help:</h4><p class="text-sky-800 font-medium leading-relaxed italic">You can protect us! Always use the <b>"Reduce, Reuse, Recycle"</b> rule at home and school. Turn off lights to save energy and help stop the ice from melting.</p></div></section>
                     </div>
-                    <div class="lg:col-span-5"><div class="rounded-[4rem] overflow-hidden shadow-2xl ring-[12px] ring-sky-50"><img src="${a.motionImg}" class="w-full h-[500px] object-cover alive-photo" alt="Captured in motion 📸"><div class="p-6 bg-white"><p class="text-center font-black text-sky-900 uppercase text-xs tracking-widest italic">Captured in motion 📸</p></div></div></div>
+                    <div class="lg:col-span-5"><div class="rounded-[4rem] overflow-hidden shadow-2xl ring-[12px] ring-sky-50 overflow-hidden"><img src="${a.motionImg}" class="w-full h-[500px] object-cover alive-photo" alt="Captured in motion 📸"><div class="p-6 bg-white"><p class="text-center font-black text-sky-900 uppercase text-xs tracking-widest italic">Captured in motion 📸</p></div></div></div>
                 </div>`;
             
             if (state.currentTab === 'about') return `
                 <div class="bg-white p-8 sm:p-12 rounded-[4rem] shadow-sm border border-sky-50">
                     <h3 class="text-3xl sm:text-4xl font-black text-sky-950 mb-10 border-b-8 border-sky-500 pb-4 inline-block uppercase tracking-tighter">General Information</h3>
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 text-lg sm:text-xl text-sky-900 font-bold leading-relaxed">
-                        <div><p class="mb-6">Scientific name: <i>${a.species}</i>.</p><p>We are magnificent creatures perfectly adapted to the coldest and deepest waters of the Russian Arctic.</p></div>
+                        <div><p class="mb-6">Scientific name: <i>${a.species}</i>.</p><p>We are magnificent creatures perfectly adapted to the coldest waters of the Russian Arctic.</p></div>
                         <div class="bg-sky-50 p-8 rounded-[3rem] border border-sky-100"><h4 class="text-2xl font-black text-sky-950 mb-4 flex items-center gap-2">📍 Russian Arctic Seas:</h4><p class="text-sky-600 font-medium leading-relaxed">${a.habitat}</p></div>
                     </div>
                 </div>`;
@@ -613,7 +597,7 @@
                         </div></div>
                         <div class="bg-red-50 p-6 rounded-3xl border border-red-100">
                             <h4 class="text-red-700 font-black mb-2 uppercase text-xs tracking-widest">Как помочь:</h4>
-                            <p>Следуй правилу <b>"Сокращай, Используй повторно, Перерабатывай"</b>. Экономь воду и выключай свет дома!</p>
+                            <p>Следуй правилу <b>"Сокращай, Используй повторно, Перерабатывай"</b>. Экономь воду и свет дома!</p>
                         </div>
                     </div>
                 </div>`;

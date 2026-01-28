@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Мета-тег для обхода блокировок изображений с Wikia/Yandex -->
+    <!-- Мета-тег для обхода блокировок изображений с внешних ресурсов -->
     <meta name="referrer" content="no-referrer">
     <title>ArctiGram. Underwater World of the Russian Arctic</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -55,10 +55,10 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* Эффект живого фото */
+        /* Эффект живого фото Ken Burns */
         @keyframes kenBurns {
             0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+            50% { transform: scale(1.08); }
             100% { transform: scale(1); }
         }
         .alive-photo {
@@ -82,7 +82,7 @@
         }
         .page-transition { animation: pageIn 0.5s ease-out forwards; }
 
-        .btn-click-effect:active { transform: scale(0.95); }
+        .btn-click-effect:active { transform: scale(0.96); }
 
         @keyframes likePulse {
             0% { transform: scale(1); }
@@ -98,10 +98,9 @@
         
         <!-- HEADER -->
         <header class="p-5 sm:p-8 border-b border-sky-100 bg-white/50 sticky top-0 z-50 backdrop-blur-md">
-            <!-- Row 1: Logo and Search Toggle -->
             <div class="flex justify-between items-center w-full relative">
                 <!-- Logo -->
-                <div onclick="showLanding(); playClickSound(880);" class="flex items-center gap-4 cursor-pointer group z-20 btn-click-effect">
+                <div onclick="showLanding(); playClickSound(140);" class="flex items-center gap-4 cursor-pointer group z-20 btn-click-effect">
                     <img src="https://s5.iimage.su/s/27/gDm4xRcxrSZzl2EjNuNzFugYqon9wErgDmzP5klt.png" alt="ArctiGram Logo" class="w-14 h-14 sm:w-16 sm:h-16 rounded-xl object-contain logo-animate shadow-sm">
                     <div>
                         <h1 class="text-2xl sm:text-4xl font-black text-sky-900 tracking-tighter leading-none">ArctiGram</h1>
@@ -109,39 +108,37 @@
                     </div>
                 </div>
 
-                <!-- Desktop Centered Navigation -->
+                <!-- Desktop Navigation -->
                 <div class="absolute inset-0 hidden md:flex items-center justify-center pointer-events-none">
                     <nav class="flex bg-sky-50 p-1.5 rounded-2xl pointer-events-auto shadow-sm">
-                        <button id="nav-landing-dt" onclick="showLanding(); playClickSound(660);" class="px-8 py-2.5 rounded-xl font-black text-sm uppercase transition-all btn-click-effect">Home</button>
-                        <button id="nav-interesting-dt" onclick="showInteresting(); playClickSound(660);" class="px-8 py-2.5 rounded-xl font-black text-sm uppercase transition-all btn-click-effect">Interesting</button>
+                        <button id="nav-landing-dt" onclick="showLanding(); playClickSound(120);" class="px-8 py-2.5 rounded-xl font-black text-sm uppercase transition-all btn-click-effect">Home</button>
+                        <button id="nav-interesting-dt" onclick="showInteresting(); playClickSound(120);" class="px-8 py-2.5 rounded-xl font-black text-sm uppercase transition-all btn-click-effect">Interesting</button>
                     </nav>
                 </div>
 
                 <!-- Right Side controls -->
                 <div class="flex items-center z-20">
-                    <!-- Desktop Search -->
                     <div class="relative hidden md:block w-48 lg:w-64">
                         <input id="search-box-desktop" type="text" oninput="handleSearch(this.value)" placeholder="Search (En/Ru)..." class="w-full bg-sky-50 py-3.5 pl-12 pr-4 rounded-2xl search-input border border-sky-100 text-sm font-semibold">
                         <svg class="absolute left-4 top-3.5 text-sky-400" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
                     </div>
-                    <!-- Mobile Search Trigger (Top Right) -->
-                    <button onclick="toggleMobileSearch(); playClickSound(500);" class="md:hidden p-3 bg-sky-50 rounded-2xl text-sky-500 shadow-sm border border-sky-100 active:scale-95 transition-transform">
+                    <button onclick="toggleMobileSearch(); playClickSound(100);" class="md:hidden p-3 bg-sky-50 rounded-2xl text-sky-500 shadow-sm border border-sky-100 active:scale-95 transition-transform">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
                     </button>
                 </div>
             </div>
 
-            <!-- Mobile Centered Nav -->
+            <!-- Mobile Centered Nav Row -->
             <div class="flex justify-center items-center w-full mt-6 md:hidden">
                 <nav class="flex bg-sky-50 p-1.5 rounded-2xl shadow-sm w-fit">
-                    <button id="nav-landing-mob" onclick="showLanding()" class="px-6 py-2 rounded-xl font-black text-xs uppercase transition-all btn-click-effect">Home</button>
-                    <button id="nav-interesting-mob" onclick="showInteresting()" class="px-6 py-2 rounded-xl font-black text-xs uppercase transition-all btn-click-effect">Interesting</button>
+                    <button id="nav-landing-mob" onclick="showLanding(); playClickSound(120);" class="px-6 py-2 rounded-xl font-black text-xs uppercase transition-all btn-click-effect">Home</button>
+                    <button id="nav-interesting-mob" onclick="showInteresting(); playClickSound(120);" class="px-6 py-2 rounded-xl font-black text-xs uppercase transition-all btn-click-effect">Interesting</button>
                 </nav>
             </div>
 
             <div id="mobile-search-bar" class="w-full hidden mt-4 px-1 pb-1 md:hidden page-transition">
                 <div class="relative">
-                    <input id="search-box-mobile" type="text" oninput="handleSearch(this.value)" placeholder="Search animals (En/Ru)..." class="w-full bg-sky-50 py-4 pl-12 pr-4 rounded-2xl search-input border border-sky-100 text-sm font-semibold shadow-inner">
+                    <input id="search-box-mobile" type="text" oninput="handleSearch(this.value)" placeholder="Search (En/Ru)..." class="w-full bg-sky-50 py-4 pl-12 pr-4 rounded-2xl search-input border border-sky-100 text-sm font-semibold shadow-inner">
                     <svg class="absolute left-4 top-4 text-sky-400" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
                 </div>
             </div>
@@ -155,19 +152,33 @@
     </div>
 
     <script>
-        // Audio Synthesis
+        // Audio Engine: Mechanical Keyboard "Thock" Style
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        function playClickSound(freq = 440) {
+        function playClickSound(freq = 150) {
             if (audioCtx.state === 'suspended') audioCtx.resume();
+            
+            // Мы используем треугольную волну для более "телого" и низкого звука
             const osc = audioCtx.createOscillator();
             const gain = audioCtx.createGain();
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(freq/2, audioCtx.currentTime + 0.1);
-            gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
-            osc.connect(gain); gain.connect(audioCtx.destination);
-            osc.start(); osc.stop(audioCtx.currentTime + 0.1);
+            
+            osc.type = 'triangle';
+            
+            // Ограничиваем частоту до "басового" диапазона механики
+            let targetFreq = freq > 300 ? 160 : (freq < 100 ? 110 : freq / 4);
+            
+            osc.frequency.setValueAtTime(targetFreq, audioCtx.currentTime);
+            // Быстрый спад частоты для эффекта удара клавиши
+            osc.frequency.exponentialRampToValueAtTime(targetFreq * 0.5, audioCtx.currentTime + 0.1);
+            
+            // Очень тихая громкость (0.02) для ненавязчивости
+            gain.gain.setValueAtTime(0.02, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
+            
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.1);
         }
 
         const animals = [
@@ -176,16 +187,16 @@
                 avatar: 'https://admin.arcticwwf.org/app/uploads/2022/05/Bowhead-whale-scaled.jpg',
                 motionImg: 'https://resources.arctickingdom.com/hs-fs/hubfs/Imported_Blog_Media/bowhead-breach-Jun-29-2022-07-28-13-35-PM.jpg',
                 species: 'Balaena mysticetus', habitat: 'Barents, Kara, Laptev, East Siberian, Chukchi Seas',
-                stats: { size: '19 m', weight: '112 t', age: '268 years' },
+                stats: { size: '19 m', weight: '112 t', age: 'Up to 268 years' },
                 diet: [
                     { nameEn: 'Krill Swarms', nameRu: 'Стаи криля', icon: '🦐', descEn: 'Primary food source.', descRu: 'Основной источник пищи.' },
-                    { nameEn: 'Zooplankton', nameRu: 'Зоопланктон', icon: '💧', descEn: 'Tiny organisms.', descRu: 'Крошечные организмы.' }
+                    { nameEn: 'Zooplankton', nameRu: 'Зоопланктон', icon: '💧', descEn: 'Tiny sea organisms.', descRu: 'Крошечные организмы.' }
                 ],
                 funFactEn: 'I can live up to 268 years! My fountain blow can reach 7 meters high.',
                 funFactRu: 'Я живу до 268 лет! Мой фонтан может достигать 7 метров в высоту.',
                 introEn: "I am the giant king of the ice. I break thick ice with my massive head!",
                 introRu: "Я великан ледяных полей. Я пробиваю толстый лед своей массивной головой!",
-                threats: "Climate change and ice loss.", likes: 0
+                threats: "Global warming and melting sea ice.", likes: 0
             },
             {
                 id: 'beluga-whale', nameEn: 'Beluga Whale', nameRu: 'Белуха', username: '@white_canary',
@@ -194,14 +205,14 @@
                 species: 'Delphinapterus leucas', habitat: 'White, Barents, Kara, Laptev, Bering, Okhotsk Seas',
                 stats: { size: '4.8 m', weight: '1200 kg', age: '40 years' },
                 diet: [
-                    { nameEn: 'Arctic Fish', nameRu: 'Рыба', icon: '🐟', descEn: 'Cod and herring.', descRu: 'Треска и сельдь.' },
+                    { nameEn: 'Arctic Fish', nameRu: 'Арктическая рыба', icon: '🐟', descEn: 'Cod and herring.', descRu: 'Треска и сельдь.' },
                     { nameEn: 'Crustaceans', nameRu: 'Ракообразные', icon: '🦐', descEn: 'Shrimps and crabs.', descRu: 'Креветки и крабы.' }
                 ],
                 funFactEn: 'I am known as the "sea canary" because I can whistle, chirp, and roar!',
                 funFactRu: 'Меня зовут "морской канарейкой", так как я умею петь и свистеть!',
                 introEn: "Social white whale. I hide among Arctic ice floes.",
                 introRu: "Общительный белый кит. Прячусь среди льдин.",
-                threats: "Ship noise pollution.", likes: 0
+                threats: "Water pollution and noise.", likes: 0
             },
             {
                 id: 'narwhal', nameEn: 'Narwhal', nameRu: 'Нарвал', username: '@sea_unicorn',
@@ -213,24 +224,27 @@
                     { nameEn: 'Squids', nameRu: 'Кальмары', icon: '🦑', descEn: 'Deep-sea snacks.', descRu: 'Глубоководные закуски.' },
                     { nameEn: 'Halibut', nameRu: 'Палтус', icon: '🐟', descEn: 'Bottom-dwelling fish.', descRu: 'Донная рыба.' }
                 ],
-                funFactEn: 'My "horn" is actually a long tooth with thousands of nerves!',
-                funFactRu: 'Мой "рог" — это зуб с тысячами нервных окончаний!',
+                funFactEn: 'My "horn" is actually a long tooth that can grow up to 3 meters!',
+                funFactRu: 'Мой бивень — это на самом деле длинный зуб, который растет до 3 метров!',
                 introEn: "People call me the sea unicorn. I navigate in total darkness.",
                 introRu: "Меня зовут морским единорогом. Вижу звуком в темноте.",
-                threats: "Illegal hunting.", likes: 0
+                threats: "Illegal hunting and warming.", likes: 0
             },
             {
                 id: 'gray-whale', nameEn: 'Gray Whale', nameRu: 'Серый кит', username: '@long_traveler',
                 avatar: 'https://avatars.mds.yandex.net/i?id=55505bbaabc26b58e8526d70e8c96906_l-9264009-images-thumbs&n=13',
                 motionImg: 'https://avatars.mds.yandex.net/i?id=7a6d437496df861da6db0ef1c9e74c7f_l-5270397-images-thumbs&n=13',
                 species: 'Eschrichtius robustus', habitat: 'Chukchi, Bering, Okhotsk Seas',
-                stats: { size: '13.5 m', weight: '25 t', age: '42 years' },
-                diet: [{ nameEn: 'Benthic Life', nameRu: 'Донная жизнь', icon: '🐛', descEn: 'Worms and crustaceans.', descRu: 'Черви и рачки.' }],
+                stats: { size: '13.5 m', weight: '25 t', age: '45 years' },
+                diet: [
+                    { nameEn: 'Benthic Feed', nameRu: 'Донный корм', icon: '🐛', descEn: 'Worms and crustaceans.', descRu: 'Черви и рачки.' },
+                    { nameEn: 'Amphipods', nameRu: 'Бокоплавы', icon: '🦐', descEn: 'Small crustaceans.', descRu: 'Мелкие рачки.' }
+                ],
                 funFactEn: 'I swim up to 19,000 km every year. Champion explorer!',
-                funFactRu: 'Проплываю 20,000 км в год. Чемпион по путешествиям!',
-                introEn: "Ancient species. I filter my food from the sea floor mud.",
-                introRu: "Древний вид. Фильтрую еду из ила.",
-                threats: "Water pollution.", likes: 0
+                funFactRu: 'Я проплываю до 19,000 км каждый год. Чемпион по путешествиям!',
+                introEn: "I filter my food from the sea floor mud.",
+                introRu: "Я отфильтровываю еду прямо из морского ила.",
+                threats: "Shipping and pollution.", likes: 0
             },
             {
                 id: 'fin-whale', nameEn: 'Fin Whale', nameRu: 'Финвал', username: '@speedy_giant',
@@ -239,10 +253,10 @@
                 species: 'Balaenoptera physalus', habitat: 'Barents, Bering, Okhotsk Seas',
                 stats: { size: '26 m', weight: '75 t', age: '100 years' },
                 diet: [{ nameEn: 'Krill Swarms', nameRu: 'Стаи криля', icon: '🦐', descEn: 'Massive swarms.', descRu: 'Огромные стаи рачков.' }],
-                funFactEn: 'I can swim up to 40 km/h! Second largest animal on Earth.',
-                funFactRu: 'Я развиваю скорость 40 км/ч! Второе по величине животное.',
+                funFactEn: 'I reach 40 km/h! Second largest animal on Earth.',
+                funFactRu: 'Разгоняюсь до 40 км/ч! Второе по размеру животное.',
                 introEn: "Fast giant of the deep blue Arctic oceans.",
-                introRu: "Быстрый великан глубоких вод.",
+                introRu: "Быстрый гигант глубоких арктических вод.",
                 threats: "Ship strikes.", likes: 0
             },
             {
@@ -251,12 +265,12 @@
                 motionImg: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/1_Wallen_Humpback_Whale_gf86.jpg/1200px-1_Wallen_Humpback_Whale_gf86.jpg',
                 species: 'Megaptera novaeangliae', habitat: 'Barents, Chukchi, Okhotsk Seas',
                 stats: { size: '14 m', weight: '30 t', age: '45 years' },
-                diet: [{ nameEn: 'Fish', nameRu: 'Рыба', icon: '🐟', descEn: 'Hunting in groups.', descRu: 'Охота группами.' }],
-                funFactEn: 'I use "bubble nets" to catch fish! I love to sing complex songs.',
+                diet: [{ nameEn: 'Small fish', nameRu: 'Мелкая рыба', icon: '🐟', descEn: 'Hunting in groups.', descRu: 'Командная охота.' }],
+                funFactEn: 'I use "bubble nets" to catch my dinner! I love to sing.',
                 funFactRu: 'Ловлю ужин пузырьковыми сетями! Обожаю петь.',
                 introEn: "Acrobat of the sea. I love to jump and splash.",
                 introRu: "Акробат моря. Обожаю прыгать и плескаться.",
-                threats: "Plastic trash.", likes: 0
+                threats: "Plastic pollution.", likes: 0
             },
             {
                 id: 'blue-whale', nameEn: 'Blue Whale', nameRu: 'Синий кит', username: '@ocean_titan',
@@ -264,11 +278,11 @@
                 motionImg: 'https://cdn.britannica.com/59/226359-050-B420A279/Blue-whale.jpg',
                 species: 'Balaenoptera musculus', habitat: 'Barents, Chukchi, Bering Seas',
                 stats: { size: '33 m', weight: '150 t', age: '85 years' },
-                diet: [{ nameEn: 'Krill', nameRu: 'Криль', icon: '🦐', descEn: 'Millions of tiny shrimp.', descRu: 'Миллионы рачков.' }],
-                funFactEn: 'My heart is the size of a car! I eat 4 tonnes of food a day.',
-                funFactRu: 'Мое сердце размером с машину! Сдаю 4 тонны в день.',
-                introEn: "The largest animal to ever live on Earth.",
-                introRu: "Самое крупное животное в истории Земли.",
+                diet: [{ nameEn: 'Krill Swarms', nameRu: 'Стаи криля', icon: '🦐', descEn: 'Millions of tiny shrimp.', descRu: 'Миллионы рачков.' }],
+                funFactEn: 'My heart is the size of a car! Biggest animal ever.',
+                funFactRu: 'Сердце размером с машину! Самый большой в мире.',
+                introEn: "I am the largest animal to ever live on Earth.",
+                introRu: "Я самое крупное животное в истории Земли.",
                 threats: "Ocean warming.", likes: 0
             },
             {
@@ -277,8 +291,8 @@
                 motionImg: 'https://www.counterpunch.org/wp-content/uploads/2024/02/Mother_and_baby_sperm_whale-scaled.jpg',
                 species: 'Physeter macrocephalus', habitat: 'Barents, Bering, Okhotsk Seas',
                 stats: { size: '16 m', weight: '57 t', age: '45 years' },
-                diet: [{ nameEn: 'Giant Squids', nameRu: 'Гигантские кальмары', icon: '🦑', descEn: 'My sworn enemies.', descRu: 'Заклятые враги.' }],
-                funFactEn: 'I dive up to 2 km deep! Head full of waxy ambergris.',
+                diet: [{ nameEn: 'Giant Squids', nameRu: 'Гигантские кальмары', icon: '🦑', descEn: 'Deep-sea snacks.', descRu: 'Еда на глубине.' }],
+                funFactEn: 'I dive up to 2 km! Head full of waxy ambergris.',
                 funFactRu: 'Ныряю на 2 км! В голове ценная амбра.',
                 introEn: "Master of the dark abyss. Largest brain in the world.",
                 introRu: "Хозяин темной бездны. Самый большой мозг.",
@@ -288,27 +302,27 @@
                 id: 'killer-whale', nameEn: 'Killer Whale', nameRu: 'Косатка', username: '@sea_wolf',
                 avatar: 'https://static.wikia.nocookie.net/killerwhales/images/d/d1/PackIce_fournier.bapt.jpg/revision/latest/scale-to-width-down/1200?cb=20231205052302',
                 motionImg: 'https://static.wikia.nocookie.net/killerwhales/images/d/de/Norwegian_Daniel_John_Benton.jpg/revision/latest/scale-to-width-down/1200?cb=20231214082606',
-                species: 'Orcinus orca', habitat: 'All Arctic and Pacific Seas',
+                species: 'Orcinus orca', habitat: 'All Arctic Oceans',
                 stats: { size: '10 m', weight: '10 t', age: '85 years' },
                 diet: [{ nameEn: 'Salmon & Seals', nameRu: 'Лосось и нерпы', icon: '🦭', descEn: 'We hunt in family groups.', descRu: 'Мы охотимся стаями.' }],
-                funFactEn: 'Every orca pod has its own unique dialect!',
-                funFactRu: 'У каждой семьи косаток свой диалект звуков!',
-                introEn: "Smartest predator of the sea. We work as a family.",
-                introRu: "Умнейший хищник моря. Мы охотимся семьей.",
-                threats: "Overfishing.", likes: 0
+                funFactEn: 'Every pod has its own unique vocal dialect!',
+                funFactRu: 'У каждой стаи свой диалект звуков!',
+                introEn: "Apex predator. We work together as a family.",
+                introRu: "Главный хищник. Охотимся всей семьей.",
+                threats: "Pollution.", likes: 0
             },
             {
                 id: 'harbour-porpoise', nameEn: 'Harbour Porpoise', nameRu: 'Морская свинья', username: '@shy_neighbor',
                 avatar: 'https://static.wikia.nocookie.net/scratchpadvideo/images/f/fc/Harbour_Porpoise.jpg/revision/latest/scale-to-width-down/1200?cb=20241102063607',
                 motionImg: 'https://marinedevelopments.blog.gov.uk/wp-content/uploads/sites/93/2023/12/iStock-180820223.jpg',
-                species: 'Phocoena phocoena', habitat: 'White, Barents, Okhotsk Seas',
+                species: 'Phocoena phocoena', habitat: 'White, Barents, Bering Seas',
                 stats: { size: '1.5 m', weight: '55 kg', age: '17 years' },
-                diet: [{ nameEn: 'Herring', nameRu: 'Сельдь', icon: '🐟', descEn: 'Small ocean fish.', descRu: 'Мелкая морская рыбка.' }],
-                funFactEn: 'I sounds like a "sneeze" when I breathe at the surface!',
-                funFactRu: 'Я звучу как "чих", когда дышу у поверхности!',
-                introEn: "Quiet shy neighbor. I swim close to the shore.",
-                introRu: "Тихий и робкий сосед. Живу у берега.",
-                threats: "Abandoned fishing nets.", likes: 0
+                diet: [{ nameEn: 'Herring', nameRu: 'Сельдь', icon: '🐟', descEn: 'Small tasty fish.', descRu: 'Вкусная рыба.' }],
+                funFactEn: 'I "sneeze" at the surface when I breathe!',
+                funFactRu: 'Я "чихаю" у поверхности, когда дышу!',
+                introEn: "Quiet life close to the Arctic shores.",
+                introRu: "Тихо живу у арктических берегов.",
+                threats: "Fishing nets.", likes: 0
             },
             {
                 id: 'walrus', nameEn: 'Walrus', nameRu: 'Морж', username: '@tusk_boss',
@@ -316,25 +330,25 @@
                 motionImg: 'https://static.tildacdn.com/tild6338-3461-4831-b337-326437343138/IMG_6486_FJL_2013_by.jpg',
                 species: 'Odobenus rosmarus', habitat: 'Kara, Laptev, Chukchi Seas',
                 stats: { size: '3.8 m', weight: '1550 kg', age: '35 years' },
-                diet: [{ nameEn: 'Mollusks', nameRu: 'Моллюски', icon: '🐚', descEn: 'I search for them in mud.', descRu: 'Ищу их в иле.' }],
-                funFactEn: 'My tusks are multi-tools! I climb on ice with them.',
-                funFactRu: 'Бивни — это мультитул! Я вылезаю на них на лед.',
-                introEn: "Oбожаю спать на льдинах со своей огромной семьей.",
-                introRu: "Обожаю спать на льдинах со своей семьей.",
+                diet: [{ nameEn: 'Mollusks', nameRu: 'Моллюски', icon: '🐚', descEn: 'Searching in mud.', descRu: 'Ищу их в иле.' }],
+                funFactEn: 'Tusks can be 1 meter long! Multi-tools.',
+                funFactRu: 'Бивни до 1 метра! Это мои инструменты.',
+                introEn: "Sleeping on ice with my huge family.",
+                introRu: "Сплю на льдинах со своей семьей.",
                 threats: "Ice melting.", likes: 0
             },
             {
                 id: 'ringed-seal', nameEn: 'Ringed Seal', nameRu: 'Кольчатая нерпа', username: '@ice_nests',
                 avatar: 'https://i.pinimg.com/originals/d7/a5/fb/d7a5fbec9dfa4f52527d430dd83bc89a.jpg',
                 motionImg: 'https://i.natgeofe.com/n/4dc5eaf2-d200-41ac-85f2-cfb33d84b496/ringed-seal_2x1.jpg',
-                species: 'Pusa hispida', habitat: 'All Russian Arctic Seas',
+                species: 'Pusa hispida', habitat: 'All Arctic regions',
                 stats: { size: '1.3 m', weight: '70 kg', age: '50 years' },
-                diet: [{ nameEn: 'Arctic Cod', nameRu: 'Сайка', icon: '🐟', descEn: 'Main food source.', descRu: 'Главная пища.' }],
-                funFactEn: 'I build snow nests! My claws are 2.5 cm thick.',
-                funFactRu: 'Я строю снежные гнезда! Когти — 2.5 см!',
+                diet: [{ nameEn: 'Arctic Cod', nameRu: 'Сайка', icon: '🐟', descEn: 'Main Arctic snack.', descRu: 'Главная еда.' }],
+                funFactEn: 'Only seal to build snow nests for pups!',
+                funFactRu: 'Единственная нерпа со снежным гнездом!',
                 introEn: "Small, tough and patterned. My fur has rings.",
-                introRu: "Маленькая, сильная и с узорами-кольцами.",
-                threats: "Warm winters.", likes: 0
+                introRu: "Маленькая, сильная и с узорами.",
+                threats: "Snow loss.", likes: 0
             },
             {
                 id: 'bearded-seal', nameEn: 'Bearded Seal', nameRu: 'Морской заяц', username: '@whiskered_one',
@@ -343,11 +357,11 @@
                 species: 'Erignathus barbatus', habitat: 'All Arctic Seas of Russia',
                 stats: { size: '2.3 m', weight: '300 kg', age: '28 years' },
                 diet: [{ nameEn: 'Crabs', nameRu: 'Крабы', icon: '🦀', descEn: 'Found on seabed.', descRu: 'Ищу их на дне.' }],
-                funFactEn: 'Longest whiskers of any seal! They help find food.',
-                funFactRu: 'Самые длинные усы! Помогают искать еду.',
-                introEn: "Calm spirit. I love to drift slowly on the ice.",
+                funFactEn: 'Longest whiskers! I feel for food in mud.',
+                funFactRu: 'Самые длинные усы! Ищу ими еду.',
+                introEn: "Calm spirit. I love to drift on the ice.",
                 introRu: "Спокойный дух. Дрейфую на льду.",
-                threats: "Coastal trash.", likes: 0
+                threats: "Water pollution.", likes: 0
             },
             {
                 id: 'harp-seal', nameEn: 'Harp Seal', nameRu: 'Гренландский тюлень', username: '@white_pup',
@@ -356,7 +370,7 @@
                 species: 'Pagophilus groenlandicus', habitat: 'White, Barents, Kara Seas',
                 stats: { size: '1.85 m', weight: '160 kg', age: '40 years' },
                 diet: [{ nameEn: 'Fish', nameRu: 'Рыба', icon: '🐟', descEn: 'Small prey.', descRu: 'Мелкая добыча.' }],
-                funFactEn: 'Babies are white fluffy snowballs! I dive 200m.',
+                funFactEn: 'Babies are white snowballs! I dive 200m.',
                 funFactRu: 'Дети — белые пушистики! Ныряю на 200 м.',
                 introEn: "I live on the ice. Harp mark on my back.",
                 introRu: "Живу на льду. Узор арфы на спине.",
@@ -370,10 +384,10 @@
                 stats: { size: '1.7 m', weight: '85 kg', age: '25 years' },
                 diet: [{ nameEn: 'Pollock', nameRu: 'Минтай', icon: '🐟', descEn: 'I dive silently.', descRu: 'Ныряю бесшумно.' }],
                 funFactEn: 'Unique white ribbons on dark fur! Rare seal.',
-                funFactRu: 'Белые ленты на темном меху! Редкая нерпа.',
+                funFactRu: 'Белые ленты на черном меху! Редкая нерпа.',
                 introEn: "Elusive beauty. I live far from the land.",
                 introRu: "Скрытная красавица. Живу вдали от суши.",
-                threats: "Global warming.", likes: 0
+                threats: "Ecosystem shift.", likes: 0
             },
             {
                 id: 'spotted-seal', nameEn: 'Spotted Seal', nameRu: 'Ларга', username: '@spotted_one',
@@ -381,11 +395,11 @@
                 motionImg: 'https://www.alaskasealife.org/uploads/animals/images/spottedseal2.jpg',
                 species: 'Phoca largha', habitat: 'Bering, Okhotsk, Chukchi Seas',
                 stats: { size: '1.55 m', weight: '110 kg', age: '35 years' },
-                diet: [{ nameEn: 'Salmon', nameRu: 'Лосось', icon: '🐟', descEn: 'Fresh Arctic fish.', descRu: 'Свежая рыба.' }],
-                funFactEn: 'Black spots all over! Pups hide in snow.',
-                funFactRu: 'Все тело в пятнышках! Дети прячутся в снегу.',
-                introEn: "I love sunbathing on rocks. Curious seal.",
-                introRu: "Люблю загорать на камнях. Я любопытная.",
+                diet: [{ nameEn: 'Salmon', nameRu: 'Лосось', icon: '🐟', descEn: 'Fresh tasty fish.', descRu: 'Свежая рыба.' }],
+                funFactEn: 'Black spots everywhere! Curious seal.',
+                funFactRu: 'Пятнышки повсюду! Любопытная.',
+                introEn: "I love sunbathing on Arctic rocks.",
+                introRu: "Люблю загорать на камнях.",
                 threats: "Water pollution.", likes: 0
             },
             {
@@ -407,7 +421,7 @@
                 motionImg: 'https://avatars.mds.yandex.net/i?id=04ff418c89f2e7636a7f78b6a2b8ed843c1c9629-10934180-images-thumbs&n=13',
                 species: 'Uria lomvia', habitat: 'All Russian Arctic Seas',
                 stats: { size: '41 cm', weight: '1.5 kg', age: '30 years' },
-                diet: [{ nameEn: 'Fish', nameRu: 'Рыба', icon: '🐟', descEn: 'Diving 90m deep.', descRu: 'Ныряю на 90м.' }],
+                diet: [{ nameEn: 'Fish', nameRu: 'Рыба', icon: '🐟', descEn: 'Diving 90m deep.', descRu: 'Ныряю за ней на 90 м.' }],
                 funFactEn: 'I nest on narrow cliffs. Penguin who flies!',
                 funFactRu: 'Гнезжусь на скалах. Пингвин, который летает!',
                 introEn: "Huge colonies called 'bird bazaars'.",
@@ -470,7 +484,7 @@
             const a = animals.find(item => item.id === id);
             if (a) {
                 a.likes++;
-                playClickSound(1000);
+                playClickSound(110); // Низкий звук "клавиатуры"
                 const el = document.getElementById(`like-count-ui`);
                 const btn = document.getElementById(`like-btn-main`);
                 if (el) el.innerText = a.likes;
@@ -478,7 +492,7 @@
             }
         }
 
-        function switchTab(t) { state.currentTab = t; playClickSound(440); render(); }
+        function switchTab(t) { state.currentTab = t; playClickSound(120); render(); }
 
         function render() {
             const container = document.getElementById('main-view');
@@ -499,29 +513,25 @@
             const wrap = document.createElement('div'); wrap.className = 'page-transition';
 
             if (state.view === 'landing') {
-                wrap.innerHTML = `<div class="p-4 sm:p-8 text-center md:text-left">
-                    <h2 class="text-xl sm:text-3xl font-black text-sky-900 mb-8 flex items-center justify-center md:justify-start gap-3"><span class="bg-sky-500 w-2.5 h-10 rounded-full"></span>Recommended Blogs</h2>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                        ${filteredAnimals.map(a => `
-                            <div onclick="showProfile('${a.id}'); playClickSound(600);" class="animal-card glass rounded-[2.5rem] overflow-hidden cursor-pointer border-sky-100/50 shadow-lg mx-auto w-full max-w-sm btn-click-effect">
-                                <div class="h-44 relative">
-                                    <img src="${a.motionImg}" class="w-full h-full object-cover" alt="cover" onerror="this.src='https://images.unsplash.com/photo-1550989460-0adf9ea622e2?q=80&w=400'">
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                                    <div class="absolute bottom-4 left-6 flex items-center gap-3">
-                                        <img src="${a.avatar}" class="w-16 h-16 rounded-full border-2 border-white object-cover shadow-xl" alt="avatar" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3069/3069172.png'">
-                                        <div class="text-white text-left"><h4 class="font-black text-lg leading-none">${a.nameEn}</h4><p class="text-[10px] font-bold opacity-80">${a.username}</p></div>
-                                    </div>
-                                </div>
-                                <div class="p-6 text-left"><p class="text-sky-800 text-sm font-medium line-clamp-2 italic">"${a.introEn}"</p><div class="mt-4 flex justify-between items-center text-[10px] font-bold text-sky-400 uppercase"><span>${a.likes} Likes</span><span class="text-sky-600 font-black">View Blog →</span></div></div>
-                            </div>`).join('')}
-                    </div></div>`;
+                wrap.innerHTML = `<div class="p-4 sm:p-8 text-center md:text-left"><h2 class="text-xl sm:text-3xl font-black text-sky-900 mb-8 flex items-center justify-center md:justify-start gap-3"><span class="bg-sky-500 w-2.5 h-10 rounded-full"></span>Recommended Blogs</h2><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">${filteredAnimals.map(a => `
+                    <div onclick="showProfile('${a.id}'); playClickSound(130);" class="animal-card glass rounded-[2.5rem] overflow-hidden cursor-pointer border-sky-100/50 shadow-lg mx-auto w-full max-w-sm btn-click-effect">
+                        <div class="h-44 relative">
+                            <img src="${a.motionImg}" class="w-full h-full object-cover" alt="cover" onerror="this.src='https://images.unsplash.com/photo-1550989460-0adf9ea622e2?q=80&w=400'">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                            <div class="absolute bottom-4 left-6 flex items-center gap-3">
+                                <img src="${a.avatar}" class="w-16 h-16 rounded-full border-2 border-white object-cover shadow-xl" alt="avatar" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3069/3069172.png'">
+                                <div class="text-white text-left"><h4 class="font-black text-lg leading-none">${a.nameEn}</h4><p class="text-[10px] font-bold opacity-80">${a.username}</p></div>
+                            </div>
+                        </div>
+                        <div class="p-6 text-left"><p class="text-sky-800 text-sm font-medium line-clamp-2 italic">"${a.introEn}"</p><div class="mt-4 flex justify-between items-center text-[10px] font-bold text-sky-400 uppercase"><span>${a.likes} Likes</span><span class="text-sky-600 font-black">View Blog →</span></div></div>
+                    </div>`).join('')}</div></div>`;
             } else if (state.view === 'interesting') {
                 wrap.innerHTML = `<div class="p-4 sm:p-8 max-w-4xl mx-auto space-y-10 fade-in">${animals.map(a => `<div class="bg-white p-6 sm:p-10 rounded-[3.5rem] shadow-md border border-sky-50 flex flex-col md:flex-row gap-8 items-center animal-card">
                     <img src="${a.avatar}" class="w-24 h-24 rounded-full object-cover border-4 border-sky-100 shadow-lg" alt="avatar" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3069/3069172.png'">
                     <div class="flex-grow text-center md:text-left">
                         <div class="flex justify-between items-center mb-4"><h4 class="font-black text-2xl text-sky-900">${a.nameEn}</h4><span class="text-xs text-sky-300 font-bold uppercase tracking-widest">Story Post</span></div>
                         <p class="text-sky-800 leading-relaxed font-medium text-lg italic">"Hi friends! Did you know that ${a.funFactEn.charAt(0).toLowerCase() + a.funFactEn.slice(1)} It is a real scientific fact about my life in the Arctic. Follow me for more stories!"</p>
-                        <button onclick="showProfile('${a.id}'); playClickSound(600);" class="mt-6 text-sky-500 font-black text-sm hover:underline flex items-center gap-2 mx-auto md:mx-0 btn-click-effect">Visit my blog <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 18 6-6-6-6"/></svg></button>
+                        <button onclick="showProfile('${a.id}'); playClickSound(130);" class="mt-6 text-sky-500 font-black text-sm hover:underline flex items-center gap-2 mx-auto md:mx-0 btn-click-effect">Visit my blog <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 18 6-6-6-6"/></svg></button>
                     </div></div>`).join('')}</div>`;
             } else if (state.view === 'profile') {
                 const a = state.currentAnimal;
@@ -541,7 +551,7 @@
                             <button id="like-btn-main" onclick="handleLike('${a.id}')" class="flex-1 bg-red-500 hover:bg-red-600 active:scale-95 text-white font-black text-xl py-4 sm:py-5 rounded-[2.5rem] shadow-xl transition-all flex items-center justify-center gap-3">
                                 <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg><span id="like-count-ui">${a.likes}</span>
                             </button>
-                            <button onclick="showLanding(); playClickSound(400);" class="bg-white text-sky-500 p-4 sm:p-5 rounded-[2.5rem] border-2 border-sky-50 active:scale-90 transition-transform btn-click-effect"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+                            <button onclick="showLanding(); playClickSound(100);" class="bg-white text-sky-500 p-4 sm:p-5 rounded-[2.5rem] border-2 border-sky-50 active:scale-90 transition-transform btn-click-effect"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
                         </div>
                     </div>
                     <nav class="flex px-4 sm:px-10 border-b border-sky-50 sticky top-0 z-10 bg-white/90 backdrop-blur-md overflow-x-auto no-scrollbar">
@@ -559,7 +569,7 @@
             if (state.currentTab === 'feed') return `
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
                     <div class="lg:col-span-7 space-y-12">
-                        <div class="bg-white p-8 sm:p-10 rounded-[3rem] shadow-sm border border-sky-50"><h3 class="text-2xl font-black text-sky-950 mb-4">A story from my day</h3><p class="text-sky-800 text-lg leading-relaxed font-medium italic">"The Arctic water is beautiful. Today I spent time diving and looking for my favorite food. It's a great life in the North!"</p></div>
+                        <div class="bg-white p-8 sm:p-10 rounded-[3rem] shadow-sm border border-sky-50"><h3 class="text-2xl font-black text-sky-950 mb-4">A story from my day</h3><p class="text-sky-800 text-lg leading-relaxed font-medium italic">"The Arctic world is beautiful. Today I spent time diving and looking for my favorite food. It's a great life in the North!"</p></div>
                         <section><h3 class="text-2xl font-black text-sky-950 mb-8 flex items-center gap-3"><span class="bg-sky-500 text-white p-2 rounded-2xl shadow-lg"><svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M11 9H9V2H7V9H5V2H3V9C3 11.12 4.66 12.84 6.75 12.97V22H9.25V12.97C11.34 12.84 13 11.12 13 9V2H11V9ZM16 6V14H18.5V22H21V2H18.5C17.12 2 16 3.12 16 4.5V6Z"/></svg></span>My favorite diet</h3><div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             ${a.diet.map(item => `
                                 <div class="bg-sky-50 p-6 rounded-[2.5rem] border border-sky-100 flex items-center gap-4 hover:scale-105 transition-transform">
@@ -567,7 +577,7 @@
                                     <div><h4 class="font-black text-sky-900 text-lg">${item.nameEn}</h4><p class="text-sky-600 text-sm font-bold">${item.descEn}</p></div>
                                 </div>`).join('')}
                         </div></section>
-                        <section class="bg-red-50 p-8 sm:p-10 rounded-[3.5rem] border-4 border-red-100 shadow-inner"><h3 class="text-2xl font-black text-red-600 mb-6 flex items-center gap-3"><span class="text-3xl">⚠️</span> Threats</h3><p class="text-red-900 font-bold text-lg leading-relaxed mb-6">${a.threats}</p><div class="bg-white p-6 rounded-[2rem] border border-red-200"><h4 class="text-sky-600 font-black mb-2 uppercase text-xs tracking-widest">How to help:</h4><p class="text-sky-800 font-medium leading-relaxed italic">You can protect us! Always use the <b>"Reduce, Reuse, Recycle"</b> rule at home and school. Turn off lights to save energy and help stop the ice from melting.</p></div></section>
+                        <section class="bg-red-50 p-8 sm:p-10 rounded-[3.5rem] border-4 border-red-100 shadow-inner"><h3 class="text-2xl font-black text-red-600 mb-6 flex items-center gap-3"><span class="text-3xl">⚠️</span> Threats</h3><p class="text-red-900 font-bold text-lg leading-relaxed mb-6">${a.threats}</p><div class="bg-white p-6 rounded-[2rem] border border-red-200"><h4 class="text-sky-600 font-black mb-2 uppercase text-xs tracking-widest">How to help:</h4><p class="text-sky-800 font-medium leading-relaxed italic">You can protect us! Always use the <b>"Reduce, Reuse, Recycle"</b> rule at home and school.</p></div></section>
                     </div>
                     <div class="lg:col-span-5"><div class="rounded-[4rem] overflow-hidden shadow-2xl ring-[12px] ring-sky-50 overflow-hidden">
                         <img src="${a.motionImg}" class="w-full h-[500px] object-cover alive-photo" alt="Captured in motion" onerror="this.src='https://images.unsplash.com/photo-1550989460-0adf9ea622e2?q=80&w=600'">

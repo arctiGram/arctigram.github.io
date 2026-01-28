@@ -25,7 +25,7 @@
             border-bottom: 3px solid transparent;
             font-weight: 700;
             color: #64748b;
-            padding: 0.75rem 1rem;
+            padding: 0.85rem 1.5rem;
             white-space: nowrap;
         }
 
@@ -69,60 +69,60 @@
     <div id="app" class="max-w-6xl mx-auto glass rounded-none sm:rounded-[3rem] overflow-hidden min-h-[90vh] flex flex-col shadow-2xl relative">
         
         <!-- HEADER -->
-        <header class="p-4 sm:p-6 border-b border-sky-100 bg-white/50 sticky top-0 z-50 backdrop-blur-md">
-            <!-- First Row: Logo + Mobile Search Icon / Desktop Search Input -->
+        <header class="p-5 sm:p-8 border-b border-sky-100 bg-white/50 sticky top-0 z-50 backdrop-blur-md">
+            <!-- Row 1: Logo and Search Toggle (Mobile) / Search Input (Desktop) -->
             <div class="flex justify-between items-center w-full relative">
-                <!-- Logo -->
-                <div onclick="showLanding()" class="flex items-center gap-3 sm:gap-4 cursor-pointer group z-20">
-                    <img src="https://s5.iimage.su/s/27/gDm4xRcxrSZzl2EjNuNzFugYqon9wErgDmzP5klt.png" alt="ArctiGram Logo" class="w-10 h-10 sm:w-14 sm:h-14 rounded-xl object-contain logo-animate shadow-sm">
+                <!-- Logo Section -->
+                <div onclick="showLanding()" class="flex items-center gap-4 cursor-pointer group z-20">
+                    <img src="https://s5.iimage.su/s/27/gDm4xRcxrSZzl2EjNuNzFugYqon9wErgDmzP5klt.png" alt="ArctiGram Logo" class="w-14 h-14 sm:w-16 sm:h-16 rounded-xl object-contain logo-animate shadow-sm">
                     <div>
-                        <h1 class="text-lg sm:text-3xl font-black text-sky-900 tracking-tighter leading-none uppercase">ArctiGram</h1>
-                        <p class="text-sky-500 font-bold text-[7px] sm:text-[10px] uppercase tracking-widest mt-1">Underwater World of the Russian Arctic</p>
+                        <h1 class="text-2xl sm:text-4xl font-black text-sky-900 tracking-tighter leading-none">ArctiGram</h1>
+                        <p class="text-sky-500 font-bold text-[9px] sm:text-[11px] uppercase tracking-widest mt-1">Underwater World of the Russian Arctic</p>
                     </div>
                 </div>
 
-                <!-- Desktop Centered Navigation (Strictly centered) -->
+                <!-- Desktop Centered Navigation -->
                 <div class="absolute inset-0 hidden md:flex items-center justify-center pointer-events-none">
-                    <nav class="flex bg-sky-50 p-1 rounded-2xl pointer-events-auto">
-                        <button id="nav-landing-dt" onclick="showLanding()" class="px-6 py-2 rounded-xl font-black text-xs uppercase transition-all">Home</button>
-                        <button id="nav-interesting-dt" onclick="showInteresting()" class="px-6 py-2 rounded-xl font-black text-xs uppercase transition-all">Interesting</button>
+                    <nav class="flex bg-sky-50 p-1.5 rounded-2xl pointer-events-auto shadow-sm">
+                        <button id="nav-landing-dt" onclick="showLanding()" class="px-8 py-2.5 rounded-xl font-black text-sm uppercase transition-all">Home</button>
+                        <button id="nav-interesting-dt" onclick="showInteresting()" class="px-8 py-2.5 rounded-xl font-black text-sm uppercase transition-all">Interesting</button>
                     </nav>
                 </div>
 
-                <!-- Right Side: Desktop Search or Mobile Toggle -->
+                <!-- Search Area (Right) -->
                 <div class="flex items-center z-20">
                     <!-- Desktop Search -->
                     <div class="relative hidden md:block w-48 lg:w-64">
-                        <input id="search-box-desktop" type="text" oninput="handleSearch(this.value)" placeholder="Search (En/Ru)..." class="w-full bg-sky-50 py-3 pl-12 pr-4 rounded-2xl search-input border border-sky-100 text-sm font-semibold">
-                        <svg class="absolute left-4 top-3 text-sky-400" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                        <input id="search-box-desktop" type="text" oninput="handleSearch(this.value)" placeholder="Search (En/Ru)..." class="w-full bg-sky-50 py-3.5 pl-12 pr-4 rounded-2xl search-input border border-sky-100 text-sm font-semibold">
+                        <svg class="absolute left-4 top-3.5 text-sky-400" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
                     </div>
                     <!-- Mobile Search Trigger (Top Right) -->
-                    <button onclick="toggleMobileSearch()" class="md:hidden p-2.5 bg-sky-50 rounded-2xl text-sky-500 shadow-sm border border-sky-100">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    <button onclick="toggleMobileSearch()" class="md:hidden p-3 bg-sky-50 rounded-2xl text-sky-500 shadow-sm border border-sky-100 active:scale-95 transition-transform">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
                     </button>
                 </div>
             </div>
 
-            <!-- Mobile Only Row 2: Nav Tabs (Centered) -->
-            <div class="flex justify-center items-center w-full mt-4 md:hidden">
-                <nav class="flex bg-sky-50 p-1 rounded-2xl shadow-sm">
-                    <button id="nav-landing-mob" onclick="showLanding()" class="px-6 py-1.5 rounded-xl font-black text-[11px] uppercase transition-all">Home</button>
-                    <button id="nav-interesting-mob" onclick="showInteresting()" class="px-6 py-1.5 rounded-xl font-black text-[11px] uppercase transition-all">Interesting</button>
+            <!-- Mobile Only: Centered Navigation Row -->
+            <div class="flex justify-center items-center w-full mt-6 md:hidden">
+                <nav class="flex bg-sky-50 p-1.5 rounded-2xl shadow-sm w-fit">
+                    <button id="nav-landing-mob" onclick="showLanding()" class="px-6 py-2 rounded-xl font-black text-xs uppercase transition-all">Home</button>
+                    <button id="nav-interesting-mob" onclick="showInteresting()" class="px-6 py-2 rounded-xl font-black text-xs uppercase transition-all">Interesting</button>
                 </nav>
             </div>
 
             <!-- Expandable Mobile Search Field -->
-            <div id="mobile-search-bar" class="w-full hidden mt-3 px-1 pb-1 md:hidden fade-in">
+            <div id="mobile-search-bar" class="w-full hidden mt-4 px-1 pb-1 md:hidden fade-in">
                 <div class="relative">
-                    <input id="search-box-mobile" type="text" oninput="handleSearch(this.value)" placeholder="Search animals (En/Ru)..." class="w-full bg-sky-50 py-3 pl-12 pr-4 rounded-2xl search-input border border-sky-100 text-sm font-semibold shadow-inner">
-                    <svg class="absolute left-4 top-3 text-sky-400" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    <input id="search-box-mobile" type="text" oninput="handleSearch(this.value)" placeholder="Search animals (En/Ru)..." class="w-full bg-sky-50 py-4 pl-12 pr-4 rounded-2xl search-input border border-sky-100 text-sm font-semibold shadow-inner">
+                    <svg class="absolute left-4 top-4 text-sky-400" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
                 </div>
             </div>
         </header>
 
         <!-- MAIN VIEW -->
         <div id="main-view" class="flex-grow overflow-y-auto no-scrollbar pb-10 px-4 sm:px-8">
-            <!-- Content Injected via JS -->
+            <!-- Content -->
         </div>
 
     </div>
@@ -141,13 +141,13 @@
                 stats: { size: '19 m', weight: '112 t', age: '268 years' },
                 diet: [
                     { nameEn: 'Krill', nameRu: 'Криль', icon: '🦐', descEn: 'Millions of tiny shrimp-like creatures.', descRu: 'Миллионы крошечных рачков.' },
-                    { nameEn: 'Zooplankton', nameRu: 'Зоопланктон', icon: '💧', descEn: 'Copepods and small sea life.', descRu: 'Копеподы и мелкие организмы.' }
+                    { nameEn: 'Zooplankton', nameRu: 'Зоопланктон', icon: '💧', descEn: 'Copepods and small life.', descRu: 'Копеподы и мелкие организмы.' }
                 ],
                 funFactEn: 'I can stay underwater for 40 minutes and dive to 250 meters. My blow can be 7 meters high!',
                 funFactRu: 'Я могу находиться под водой 40 минут и нырять на глубину до 250 метров. Мой фонтан достигает 7 метров!',
                 introEn: "I am the long-living king of the Arctic. I use my heavy head to break thick ice up to 60 cm!",
                 introRu: "Я — долгоживущий король Арктики. Я использую свою тяжелую голову, чтобы пробивать лед до 60 см!",
-                threats: "Global warming and melting sea ice. How to help: Try to Reduce waste, Reuse your bags, and Recycle plastic.",
+                threats: "Global warming and melting sea ice. How to help: Try to Reduce waste at home, Reuse your bags, and Recycle plastic.",
                 likes: 0
             },
             {
@@ -162,13 +162,13 @@
                 stats: { size: '4.8 m', weight: '1200 kg', age: '40 years' },
                 diet: [
                     { nameEn: 'Arctic Fish', nameRu: 'Рыба', icon: '🐟', descEn: 'Cod and herring.', descRu: 'Треска и сельдь.' },
-                    { nameEn: 'Mollusks', nameRu: 'Моллюски', icon: '🐚', descEn: 'Shellfish.', descRu: 'Моллюски.' }
+                    { nameEn: 'Mollusks', nameRu: 'Моллюски', icon: '🐚', descEn: 'Clams.', descRu: 'Моллюски.' }
                 ],
                 funFactEn: 'I can whistle, chirp, bark, and roar! People call me the "canary of the sea".',
                 funFactRu: 'Я умею свистеть, щелкать и реветь! Поэтому меня зовут "морской канарейкой".',
                 introEn: "I am a social white whale. I love to talk and hide among the white ice floes.",
                 introRu: "Я общительный белый кит. Обожаю поболтать и прятаться среди белых льдин.",
-                threats: "Ship noise pollution and ocean trash. How to help: Use a reusable water bottle and never leave trash on the beach.",
+                threats: "Ship noise and pollution. How to help: Use a reusable water bottle and never leave trash on the beach.",
                 likes: 0
             },
             {
@@ -183,12 +183,12 @@
                 stats: { size: '4.2 m', weight: '1500 kg', age: '55 years' },
                 diet: [
                     { nameEn: 'Halibut', nameRu: 'Палтус', icon: '🐟', descEn: 'Deep-water fish.', descRu: 'Глубоководная рыба.' },
-                    { nameEn: 'Squids', nameRu: 'Кальмары', icon: '🦑', descEn: 'Delicious snacks.', descRu: 'Вкусные лакомства.' }
+                    { nameEn: 'Squids', nameRu: 'Кальмары', icon: '🦑', descEn: 'Tasty snacks.', descRu: 'Вкусные лакомства.' }
                 ],
                 funFactEn: 'My "horn" is actually a long tooth! I can dive up to 1 km deep to find my food.',
                 funFactRu: 'Мой "рог" — это на самом деле длинный зуб! Я могу нырять на глубину до 1 км.',
                 introEn: "I am the sea unicorn. I use sound clicks to find my way in the dark Arctic water.",
-                introRu: "Я морской единорог. Я использую щелчки, чтобы ориентироваться в темных глубинах Арктики.",
+                introRu: "Я морской единорог. Я использую щелчки, чтобы ориентироваться в темноте Арктики.",
                 threats: "Climate warming and ships. How to help: Recycle plastic toys and paper to help protect our oceans.",
                 likes: 0
             },
@@ -206,8 +206,8 @@
                     { nameEn: 'Worms', nameRu: 'Черви', icon: '🐛', descEn: 'Found on the sea floor.', descRu: 'Живут на морском дне.' },
                     { nameEn: 'Amphipods', nameRu: 'Рачки', icon: '🦐', descEn: 'Small bottom life.', descRu: 'Мелкие донные рачки.' }
                 ],
-                funFactEn: 'I swim up to 19,000 km every year. I am a true world explorer!',
-                funFactRu: 'Я проплываю до 19,000 км каждый год. Я настоящий исследователь мира!',
+                funFactEn: 'I swim up to 19,000 km every year. That is like traveling halfway around the whole world!',
+                funFactRu: 'Я проплываю до 19,000 км каждый год. Это почти половина пути вокруг света!',
                 introEn: "I filter my food from the sea floor mud. I am one of the most ancient whales.",
                 introRu: "Я отфильтровываю еду из ила на дне моря. Я один из самых древних видов китов.",
                 threats: "Ocean pollution and industrial noise. How to help: Use fewer plastic bags and recycle all your waste.",
@@ -217,7 +217,7 @@
                 id: 'fin-whale',
                 nameEn: 'Fin Whale',
                 nameRu: 'Финвал',
-                username: '@fast_giant',
+                username: '@speedy_giant',
                 avatar: 'https://images.unsplash.com/photo-1576809808081-908411462450?auto=format&fit=crop&q=80&w=400',
                 motionImg: 'https://images.unsplash.com/photo-1551924708-c5604712260c?auto=format&fit=crop&q=80&w=800',
                 species: 'Balaenoptera physalus',
@@ -347,14 +347,14 @@
                 avatar: 'https://images.unsplash.com/photo-1615818458907-415236476411?auto=format&fit=crop&q=80&w=400',
                 motionImg: 'https://images.unsplash.com/photo-1589656966895-2f33e7653819?auto=format&fit=crop&q=80&w=800',
                 species: 'Pusa hispida',
-                habitat: 'All Arctic Seas of Russia',
+                habitat: 'All Arctic seas of Russia',
                 stats: { size: '1.3 m', weight: '70 kg', age: '50 years' },
                 diet: [{ nameEn: 'Polar cod', nameRu: 'Сайка', icon: '🐟', descEn: 'Main Arctic snack.', descRu: 'Главная арктическая закуска.' }],
                 funFactEn: 'I build snowy nests for my babies. My claws are 2.5 cm thick!',
                 funFactRu: 'Я строю снежные гнезда для детей. Мои когти — целых 2.5 см толщиной!',
                 introEn: "I am small and tough. My fur has beautiful rings for camouflage.",
                 introRu: "Я маленькая и выносливая. Моя шкурка в колечках для маскировки.",
-                threats: "Early ice melt. How to help: Use reusable bags instead of plastic ones.",
+                threats: "Melting snow. How to help: Reuse your paper at home and school.",
                 likes: 0
             },
             {
@@ -365,14 +365,14 @@
                 avatar: 'https://images.unsplash.com/photo-1578517868961-144697012333?auto=format&fit=crop&q=80&w=400',
                 motionImg: 'https://images.unsplash.com/photo-1517783999520-f068d7431a60?auto=format&fit=crop&q=80&w=800',
                 species: 'Erignathus barbatus',
-                habitat: 'All Arctic Seas of Russia',
+                habitat: 'All Arctic seas of Russia',
                 stats: { size: '2.3 m', weight: '300 kg', age: '28 years' },
                 diet: [{ nameEn: 'Crabs', nameRu: 'Крабы', icon: '🦀', descEn: 'Food from the seabed.', descRu: 'Еда с морского дна.' }],
                 funFactEn: 'I have the longest whiskers! They help me feel for food in dark mud.',
-                funFactRu: 'У меня самые длинные усы среди тюленей! Они помогают искать еду.',
+                funFactRu: 'У меня самые длинные усы среди тюленей! Они помогают мне искать еду.',
                 introEn: "People call me the 'Sea Hare'. I am very calm and love drifting on ice.",
                 introRu: "Меня называют 'Морским зайцем'. Я очень спокойный тюлень.",
-                threats: "Water pollution. How to help: Reuse bottles instead of buying new plastic.",
+                threats: "Coastal pollution. How to help: Reuse bottles instead of buying new plastic.",
                 likes: 0
             },
             {
@@ -403,11 +403,11 @@
                 species: 'Histriophoca fasciata',
                 habitat: 'Bering Sea, Sea of Okhotsk',
                 stats: { size: '1.7 m', weight: '80 kg', age: '25 years' },
-                diet: [{ nameEn: 'Pollock', nameRu: 'Минтай', icon: '🐟', descEn: 'I dive silently.', descRu: 'Я ныряю совершенно бесшумно.' }],
+                diet: [{ nameEn: 'Pollock', nameRu: 'Минтай', icon: '🐟', descEn: 'I dive completely silently.', descRu: 'Я ныряю совершенно бесшумно.' }],
                 funFactEn: 'I have white ribbons on my dark fur! I am a rare Arctic seal.',
                 funFactRu: 'На моей темной шкурке белые ленты! Я редкая нерпа.',
-                introEn: "I am elusive and beautiful. I live far from any land.",
-                introRu: "Я скрытная и красивая. Живу вдали от всякой суши.",
+                introEn: "I am elusive and beautiful. I live вдали от суши в открытом море.",
+                introRu: "Я скрытная и красивая. Живу вдали от суши в открытом море.",
                 threats: "Ice loss. How to help: Reuse your old toys to reduce waste.",
                 likes: 0
             },
@@ -480,7 +480,7 @@
                 funFactRu: 'Я размером всего с воробья! Мы собираемся миллионами.',
                 introEn: "I am the smallest seabird in the high Arctic.",
                 introRu: "Я самая маленькая морская птица Арктики.",
-                threats: "Climate warming. How to help: Walk instead of driving a car.",
+                threats: "Warming ocean. How to help: Walk instead of driving a car.",
                 likes: 0
             },
             {
@@ -509,7 +509,8 @@
         function handleSearch(val) {
             const q = val.toLowerCase().trim();
             filteredAnimals = animals.filter(a => 
-                a.nameEn.toLowerCase().includes(q) || a.nameRu.toLowerCase().includes(q)
+                a.nameEn.toLowerCase().includes(q) || 
+                a.nameRu.toLowerCase().includes(q)
             );
             if (state.view === 'landing') render();
         }
@@ -541,28 +542,27 @@
             const container = document.getElementById('main-view');
             container.innerHTML = '';
             
-            // Re-sync nav buttons
-            const dtLanding = document.getElementById('nav-landing-dt');
-            const dtInteresting = document.getElementById('nav-interesting-dt');
-            const mobLanding = document.getElementById('nav-landing-mob');
-            const mobInteresting = document.getElementById('nav-interesting-mob');
+            const nldt = document.getElementById('nav-landing-dt');
+            const nidt = document.getElementById('nav-interesting-dt');
+            const nlmb = document.getElementById('nav-landing-mob');
+            const nimb = document.getElementById('nav-interesting-mob');
             
-            const active = 'px-6 py-2 rounded-xl font-black text-[10px] sm:text-xs uppercase text-sky-600 bg-white shadow-sm transition-all';
-            const inactive = 'px-6 py-2 rounded-xl font-black text-[10px] sm:text-xs uppercase text-sky-400 hover:text-sky-600 transition-all';
+            const active = 'px-6 py-2.5 rounded-xl font-black text-[11px] sm:text-sm uppercase text-sky-600 bg-white shadow-sm transition-all';
+            const inactive = 'px-6 py-2.5 rounded-xl font-black text-[11px] sm:text-sm uppercase text-sky-400 hover:text-sky-600 transition-all';
             
-            if (dtLanding) dtLanding.className = state.view === 'landing' ? active : inactive;
-            if (dtInteresting) dtInteresting.className = state.view === 'interesting' ? active : inactive;
-            if (mobLanding) mobLanding.className = state.view === 'landing' ? active : inactive;
-            if (mobInteresting) mobInteresting.className = state.view === 'interesting' ? active : inactive;
+            if (nldt) nldt.className = state.view === 'landing' ? active : inactive;
+            if (nidt) nidt.className = state.view === 'interesting' ? active : inactive;
+            if (nlmb) nlmb.className = state.view === 'landing' ? active : inactive;
+            if (nimb) nimb.className = state.view === 'interesting' ? active : inactive;
 
             if (state.view === 'landing') {
-                container.innerHTML = `<div class="p-4 sm:p-8 fade-in text-center md:text-left"><h2 class="text-xl sm:text-2xl font-black text-sky-900 mb-8 flex items-center justify-center md:justify-start gap-3"><span class="bg-sky-500 w-2 h-8 rounded-full"></span>Recommended Blogs</h2><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">${filteredAnimals.map(a => `
+                container.innerHTML = `<div class="p-4 sm:p-8 fade-in text-center md:text-left"><h2 class="text-xl sm:text-3xl font-black text-sky-900 mb-8 flex items-center justify-center md:justify-start gap-3"><span class="bg-sky-500 w-2.5 h-10 rounded-full"></span>Recommended Blogs</h2><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">${filteredAnimals.map(a => `
                     <div onclick="showProfile('${a.id}')" class="animal-card glass rounded-[2.5rem] overflow-hidden cursor-pointer border-sky-100/50 shadow-lg mx-auto w-full max-w-sm">
                         <div class="h-44 relative">
                             <img src="${a.motionImg}" class="w-full h-full object-cover" alt="cover">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
                             <div class="absolute bottom-4 left-6 flex items-center gap-3">
-                                <img src="${a.avatar}" class="w-14 h-14 rounded-full border-2 border-white object-cover shadow-xl" alt="avatar">
+                                <img src="${a.avatar}" class="w-16 h-16 rounded-full border-2 border-white object-cover shadow-xl" alt="avatar">
                                 <div class="text-white text-left"><h4 class="font-black text-lg leading-none">${a.nameEn}</h4><p class="text-[10px] font-bold opacity-80">${a.username}</p></div>
                             </div>
                         </div>
@@ -581,18 +581,20 @@
                 container.innerHTML = `<div class="fade-in">
                     <div class="p-6 sm:p-10 flex flex-col items-center bg-gradient-to-b from-sky-50 to-white/0">
                         <div class="relative mb-6">
-                            <img src="${a.avatar}" class="w-32 h-32 sm:w-48 sm:h-48 rounded-full border-[8px] border-white shadow-2xl object-cover" alt="avatar">
+                            <img src="${a.avatar}" class="w-36 h-36 sm:w-52 sm:h-52 rounded-full border-[8px] border-white shadow-2xl object-cover" alt="avatar">
                             <div class="absolute bottom-2 right-2 bg-yellow-400 p-3 rounded-full border-4 border-white text-white shadow-lg"><svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
                         </div>
-                        <h2 class="text-3xl sm:text-4xl font-black text-sky-950 text-center uppercase tracking-tighter">${a.nameEn}</h2>
-                        <p class="text-sky-500 font-bold text-lg sm:text-xl mt-1">${a.username}</p>
-                        <div class="flex gap-4 sm:gap-12 my-8">
+                        <h2 class="text-3xl sm:text-5xl font-black text-sky-950 text-center uppercase tracking-tighter">${a.nameEn}</h2>
+                        <p class="text-sky-500 font-bold text-lg sm:text-2xl mt-1">${a.username}</p>
+                        <div class="flex gap-4 sm:gap-12 my-10">
                             <div class="text-center"><p class="text-xl sm:text-2xl font-black text-sky-900">${a.stats.size}</p><p class="text-[10px] text-sky-400 font-black uppercase tracking-widest">Size</p></div>
                             <div class="text-center border-x border-sky-100 px-6 sm:px-10"><p class="text-xl sm:text-2xl font-black text-sky-900">${a.stats.weight}</p><p class="text-[10px] text-sky-400 font-black uppercase tracking-widest">Weight</p></div>
                             <div class="text-center"><p class="text-xl sm:text-2xl font-black text-sky-900">${a.stats.age}</p><p class="text-[10px] text-sky-400 font-black uppercase tracking-widest">Age</p></div>
                         </div>
                         <div class="flex gap-4 w-full max-w-sm">
-                            <button onclick="handleLike('${a.id}')" class="flex-1 bg-red-500 hover:bg-red-600 active:scale-95 text-white font-black text-xl py-4 sm:py-5 rounded-[2.5rem] shadow-xl transition-all flex items-center justify-center gap-3"><svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg><span>${a.likes}</span></button>
+                            <button onclick="handleLike('${a.id}')" class="flex-1 bg-red-500 hover:bg-red-600 active:scale-95 text-white font-black text-xl py-4 sm:py-5 rounded-[2.5rem] shadow-xl transition-all flex items-center justify-center gap-3">
+                                <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg><span>${a.likes}</span>
+                            </button>
                             <button onclick="showLanding()" class="bg-white text-sky-500 p-4 sm:p-5 rounded-[2.5rem] border-2 border-sky-50 active:scale-90 transition-transform"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
                         </div>
                     </div>
